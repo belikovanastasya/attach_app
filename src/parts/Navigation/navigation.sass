@@ -1,0 +1,71 @@
+@import '../../sass/_mixins.sass'
+@import '../../sass/variables.sass'
+
+.menu
+  width: 100%
+  height: calc(100vh - 0px)
+  background: $white
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 10 
+  padding: 110px 0px 30px 0px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  transform: translateY(-200%)
+  transition: all 0.5s ease
+  +rmin(1200)
+    height: calc(100vh - 0px)
+    top: 0
+    padding-top: 200px
+  &.active
+    transform: translateY(0%)  
+  .menu_nav
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-start
+    height: 200px
+    width: 100%
+    +rmin(768)
+      height: 30vh
+    li
+      text-transform: uppercase
+      font-family: $sans
+      font-size: 16px
+      letter-spacing: 1px
+      font-weight: 900
+      transform: translateY(-20px)
+      opacity: 0
+      +rmin(768)
+        font-size: 24px
+        position: relative
+      +rmin(1200)
+        &:hover
+          a
+            transform: translateX(30px)
+            &:after
+              opacity: 1
+              transform: translate(-30px, 10px)
+        a
+          display: inline-block
+          position: relative
+          transition: all 0.5s ease-in-out
+          &:after
+            @include pseudo
+            width: 5px
+            height: 5px
+            background: #000
+            top: 0
+            left: -10px
+            border-radius: 100%
+            opacity: 0  
+            transition: all 0.5s ease 
+  .langs
+    margin-top: 50px
+    transform: translateY(-20px)
+    opacity: 0
+    +rmin(1200)
+      display: none    

@@ -66,14 +66,40 @@ module.exports = {
       },
 
       {
-        test: /\.s?css$/,
+        test: /\.sass$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            {loader: "css-loader"},
+            { loader: "css-loader" },
             {loader: "sass-loader"}
           ]
         })
+      },
+      {
+        test: /\.svg$/,
+        issuer: /\.jsx?$/,
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true // true outputs JSX tags
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       },
       {
         enforce: 'pre',

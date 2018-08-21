@@ -1,4 +1,5 @@
 import ReactDom from 'react-dom';
+import './footer.sass'
 //import FooterNav from '../FooterNav'
 
 

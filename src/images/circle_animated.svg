@@ -1,0 +1,11 @@
+
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 195.044 195.044" style="" xml:space="preserve" class="">
+<g>
+	<g>
+
+		<path style="fill: none; stroke: #000000;" d="M97.524,0C43.748,0,0,43.748,0,97.524s43.744,97.52,97.524,97.52s97.52-43.744,97.52-97.52
+			S151.299,0,97.524,0z M97.524,190.438c-51.231,0-92.914-41.683-92.914-92.914S46.292,4.61,97.524,4.61
+			s92.914,41.683,92.914,92.918C190.438,148.755,148.755,190.438,97.524,190.438z" class="Bauxkoka_0"></path>
+	</g>
+</g>
+<style data-made-with="vivus-instant">.Bauxkoka_0{stroke-dasharray:1197 1199;stroke-dashoffset:1198;}.start .Bauxkoka_0{animation:Bauxkoka_draw 1500ms linear 0ms forwards;}@keyframes Bauxkoka_draw{100%{stroke-dashoffset:0;}}@keyframes Bauxkoka_fade{0%{stroke-opacity:1;}92.98245614035088%{stroke-opacity:1;}100%{stroke-opacity:0;}}</style></svg>
