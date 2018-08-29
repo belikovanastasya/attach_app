@@ -4,7 +4,10 @@ import { App } from './appComponent';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
+const Root = ( <Router>
+  <App />
+</Router>   );
 
 
 
-ReactDom.render(App, document.getElementById('app'));
+ReactDom.render(Root, document.getElementById('app'));
