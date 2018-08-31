@@ -1,4 +1,5 @@
 import ReactDom from 'react-dom';
+import { NavLink } from 'react-router-dom';
 import { navList } from '../../constants';
 import { Langs } from '../Langs';
 import './navigation.sass';
@@ -9,7 +10,7 @@ export const Navigation = (props) => {
     <div className={`menu ${props.hidden ? 'active' : null}`}>
     <div className="container">
       <ul className="menu_nav">
-        {navList.map((link, index) => <li key={index}><a href={link}>{link}</a></li>)}
+          {navList.map((nav, index) => <li key={index}><NavLink to={`/${nav.link}`}>{nav.text}</NavLink></li>)}
       </ul>
       <Langs />
     </div>

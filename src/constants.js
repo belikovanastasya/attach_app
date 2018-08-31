@@ -1,4 +1,10 @@
-export const navList = ['Hey, attach', 'Projects', 'News', 'Contact Us'];
+export const navList = [
+  { 'link': 'home', 'text': 'Hey, attach' },
+  { 'link': 'project', 'text': 'Projects' },
+  { 'link': 'news', 'text': 'News' },
+  { 'link': 'contact', 'text': 'Contact Us' },
+  
+]
 export const langsList = [
   { 'lang': 'en', 'className': 'active' },
   { 'lang': 'uk', 'className': '' },

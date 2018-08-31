@@ -19,9 +19,10 @@
   +rmin(1200)
     height: calc(100vh - 0px)
     top: 0
-    padding-top: 200px
   &.active
-    transform: translateY(0%)  
+    transform: translateY(90px)
+    +rmin(1200)
+      transform: translateY(110px)  
   .menu_nav
     display: flex
     flex-direction: column
@@ -37,8 +38,8 @@
       font-size: 16px
       letter-spacing: 1px
       font-weight: 900
-      transform: translateY(-20px)
-      opacity: 0
+      transform: translateY(0px)
+      opacity: 1
       +rmin(768)
         font-size: 24px
         position: relative

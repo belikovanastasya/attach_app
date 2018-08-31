@@ -37,6 +37,8 @@ header
       align-items: center  
       width: 210px
       height: 80px
+       position: relative
+      z-index: 12
       +rmin(1200)
         height: 100px
         transition: all 0.5s ease
@@ -71,9 +73,13 @@ header
         width: 18px
         height: 18px
         display: block
+        position: relative
+        z-index: 12
         img
           width: 18px
           height: 18px
       .langs
+        position: relative
+        z-index: 12
         +r(767)
           display: none
