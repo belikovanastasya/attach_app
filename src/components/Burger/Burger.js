@@ -10,6 +10,9 @@ export class Burger extends React.Component {
   toggle = () => {
     this.setState({ addClass: !this.state.addClass, hidden: !this.state.hidden });
   }
+  updateData = () => {
+    this.setState({addClass: false, hidden: true})
+  }
 
   render() {
     return (
@@ -20,7 +23,7 @@ export class Burger extends React.Component {
           <span className="middle"></span>
           <span className="bot"></span>
         </div>
-        <Navigation hidden={!this.state.hidden} />
+        <Navigation hidden={!this.state.hidden} updateData={this.updateData} />
       </React.Fragment>
     );
   }

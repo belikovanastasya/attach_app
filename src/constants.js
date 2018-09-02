@@ -1,5 +1,5 @@
 export const navList = [
-  { 'link': 'home', 'text': 'Hey, attach' },
+  { 'link': 'about', 'text': 'Hey, attach' },
   { 'link': 'project', 'text': 'Projects' },
   { 'link': 'news', 'text': 'News' },
   { 'link': 'contact', 'text': 'Contact Us' },
