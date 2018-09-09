@@ -1,8 +1,9 @@
-import ReactDom from 'react-dom';
+import { NavLink } from 'react-router-dom';
 import './login.sass'
+
 
 export const Login = () => (
   <React.Fragment>
-    <a href="./login" className="userprofile"><img src="./images/user.svg"></img></a>
+    <NavLink to="./login" className="userprofile"><img src="./images/user.svg"></img></NavLink>
   </React.Fragment>
 );

@@ -9,13 +9,12 @@ import { About } from './About';
 import { Project } from './Project';
 import { Contacts } from './Contacts';
 import { Newses } from './Newses';
-import { Login } from './Login'
 import { Registration } from './Registration'
 
 
 export class Pages extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: ''
     }
@@ -28,10 +27,10 @@ export class Pages extends Component {
   render() {
     return (
       <Switch>
-        {this.props.login ? <Redirect from="/login" to="/user" /> :
+        {this.props.islogin ? <Redirect from="/login" to="/user" /> :
           <Route path="/login" render={() => <Registration onLogin={this.onLogin} />} />},
           <Route path="/" exact component={Main} key="home" />,
-          <Route path="/user" component={User} key="user" />,
+          {this.props.isLogin && <Route path="/user" component={User} key="user" />},
           <Route path="/about" component={About} key="about" />,
           <Route path="/project" component={Project} key="project" />,
           <Route path="/newses" component={Newses} key="news" />,

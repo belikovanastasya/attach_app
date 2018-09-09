@@ -7,7 +7,7 @@ import './header.sass'
 
 
 
-export const Header = () => (
+export const Header = ({ login, setLoginState }) => (
   <header>
     <div className="container">
       <div className="header_wrap">
@@ -22,6 +22,7 @@ export const Header = () => (
           <span className="circle circle_lang"></span>
           <Langs />
           <Login />
+          {login && <button className="logout" onClick={() => setLoginState(false)}><img src="./images/logout.svg"></img></button>}
         </div>
       </div>
     </div>

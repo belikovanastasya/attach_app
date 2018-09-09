@@ -11,18 +11,18 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      islogin: false
+      islogin: true
     }
   }
   setLoginState = (login) => {
-    this.setLoginState({login})
+    this.setState({ islogin: login })
   }
   render() {
-    const { login } = this.state
+    const { islogin } = this.state
     return (
       <div className="wrapper">
-        <Header login={login} />
-        <Pages login={login} />
+        <Header login={islogin} setLoginState={this.setLoginState} />
+        <Pages login={islogin} setLoginState={this.setLoginState} />
         <Footer />
       </div>
     );
