@@ -7,11 +7,25 @@ import { Pages } from './pages/Pajes'
 import './appComponent.sass'
 
 
-export const App = () => (
-  <div className="wrapper">
-    <Header />
-    <Pages />
-    <Footer />
-  </div>
-);
+export class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      islogin: false
+    }
+  }
+  setLoginState = (login) => {
+    this.setLoginState({login})
+  }
+  render() {
+    const { login } = this.state
+    return (
+      <div className="wrapper">
+        <Header login={login} />
+        <Pages login={login} />
+        <Footer />
+      </div>
+    );
+  }
+}
 

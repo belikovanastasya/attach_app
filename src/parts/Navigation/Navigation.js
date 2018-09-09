@@ -17,7 +17,7 @@ export class Navigation extends React.Component{
     <div className={`menu ${this.props.hidden ? 'active' : null}`}>
       <div className="container">
         <ul className="menu_nav">
-            {navList.map((nav, index) => <li key={index} onClick={this.props.updateData}><NavLink to={`/${nav.link}`}>{nav.text}</NavLink></li>)}
+            {navList.map((nav, index) => <li key={index} onClick={this.props.updateData}><NavLink to={`/${nav.link}`} activeClassName="active">{nav.text}</NavLink></li>)}
         </ul>
         <Langs />
       </div>
