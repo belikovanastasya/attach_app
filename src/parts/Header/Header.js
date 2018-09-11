@@ -22,7 +22,7 @@ export const Header = ({ login, setLoginState }) => (
           <span className="circle circle_lang"></span>
           <Langs />
           <Login />
-          {login && <button className="logout" onClick={() => setLoginState(false)}><img src="./images/logout.svg"></img></button>}
+          {login && <button className="logout" onClick={() => history.push('/user')}><img src="./images/logout.svg"></img></button>}
         </div>
       </div>
     </div>

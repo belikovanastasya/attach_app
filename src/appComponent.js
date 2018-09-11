@@ -15,9 +15,10 @@ export class App extends Component {
     }
   }
   setLoginState = (login) => {
-    this.setState({ islogin: login })
+    this.setState({ islogin: login });
   }
   render() {
+
     const { islogin } = this.state
     return (
       <div className="wrapper">
