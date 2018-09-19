@@ -14,11 +14,8 @@ import { Registration } from "./Registration/Registration";
 
 
 export class Pages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: ''
-    }
+  constructor(props){
+    super(props)
   }
   render() {
     return (

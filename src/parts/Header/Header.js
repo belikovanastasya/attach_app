@@ -8,24 +8,26 @@ import './header.sass'
 
 
 
-export class Header extends React.Component { 
+export class Header extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
+  }
+  logout = (user) => {
+    this.props.setLoginState(user);
+    this.props.history.push('/')
+
   }
 
   render() {
-    const isLogin  = this.props.login;
-    // const userLinks = (
-
-    // );
+    const isLogin  = this.props.user;
     const guestLinks = (
-      <React.Fragment> 
+      <React.Fragment>
         <NavLink to="./user" className="userprofile"><img src="./images/user.svg"></img></NavLink>
-      <button className="logout" onClick={this.props.setLoginState(false)}><img src="./images/logout.svg"></img></button> 
+      <button className="logout" onClick={() => this.logout(null)}><img src="./images/logout.svg"></img></button>
     </React.Fragment>
     );
-    
-    return ( 
+    return (
       <header>
       <div className="container">
         <div className="header_wrap">
@@ -47,7 +49,4 @@ export class Header extends React.Component {
     </header>
     )
   }
-
-
 }
- 

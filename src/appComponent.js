@@ -11,19 +11,32 @@ export class App extends Component {
   constructor() {
     super();
     this.state = {
-      islogin: false
+      user: null
     }
   }
-  setLoginState = (login) => {
-    this.setState({ islogin: login });
+  setLoginState = (user) => {
+    this.setState({ user });
   }
+  componentDidMount(){
+    fetch('http://localhost:8086/public/checkUser', {
+    method: 'GET',
+    credentials: 'include',
+  })
+  .then(data => data.json())
+  .then(data => this.setLoginState(data))
+  .catch((err) => console.log('Can\'t login', err))
+  }
+
   render() {
 
     const { islogin } = this.state
     return (
       <div className="wrapper">
-        <Header login={islogin} setLoginState={this.setLoginState} />
-        <Pages login={islogin} setLoginState={this.setLoginState} />
+        <Header
+        user={this.state.user}
+        setLoginState={this.setLoginState}
+         />
+        <Pages setLoginState={this.setLoginState} login={this.state.user} />
         <Footer />
       </div>
     );
