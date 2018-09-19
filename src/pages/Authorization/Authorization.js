@@ -12,20 +12,11 @@ export class Authorization extends React.Component{
     e.preventDefault();
 
     const{ email, password} = e.target
-
-    fetch('http://localhost:8086/public/login', {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'cors',
-    headers:{
-      'Content-type': 'application/json; charset=utf-8'
-    },
-    body: JSON.stringify({ email: email.value, password: password.value })
-  })
-  .then(data => data.json())
-  .then(user => {
-    this.props.onLogin(user)
-    })
+    login({ email: email.value, password: password.value })
+    .then(data => data.json())
+    .then(user => {
+      this.props.onLogin(user)
+      })
   .catch((err) => console.log('Can\'t login', err))
 }
 
