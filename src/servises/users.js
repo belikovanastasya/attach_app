@@ -1,14 +1,11 @@
-import { request } from './rest';
+import { rest } from './rest';
 
-export const login = (data = {}) => request(
+
+export const checkUser = () => rest.get('public/checkUser');
+export const login = (data = {}) => rest.post(
   'public/login',
-  'POST',
-  data,
-  {
-    headers: {
-      'Content-type': 'application/json; charset=utf-8'
-    }
-  }
+  data
 );
-
-export const checkUser = () => request('public/checkUser')
+export const logout = () => rest.get('logout');
+export const createUser = () =>rest.post('public/user', data);
+export const updateUser = () =>rest.put('user', data);

@@ -1,24 +1,20 @@
 import ReactDom from 'react-dom';
+import { NavLink } from 'react-router-dom';
 import { Navigation } from '../Navigation';
 import { Langs } from '../Langs';
 import { Login } from '../Login';
 import { Burger } from '../../components/Burger';
-import { NavLink } from 'react-router-dom';
-import './header.sass'
-
-
+import {logout} from '../../servises';
+import './header.sass';
 
 export class Header extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
   logout = (user) => {
     this.props.setLoginState(user);
-    this.props.history.push('/')
-
+    logout();
   }
-
   render() {
     const isLogin  = this.props.user;
     const guestLinks = (
