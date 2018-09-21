@@ -7,6 +7,10 @@ import { login } from '../../servises'
 export class Authorization extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      redirectToReffer: false
+    }
+    console.log(this.props)
   }
 
   onSabmit = (e) => {
@@ -14,12 +18,19 @@ export class Authorization extends React.Component {
     const { email, password } = e.target
     login({ email: email.value, password: password.value })
       .then(user => {
-        this.props.onLogin(user)
+        this.props.onLogin(user);
+        this.setState({ redirectToReferrer: true });
       })
       .catch((err) => console.log('Can\'t login', err))
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return <Redirect to={from} />;
+    }
     return (
       <section className="registration">
         <div className="container">
