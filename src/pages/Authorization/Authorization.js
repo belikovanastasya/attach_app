@@ -1,6 +1,6 @@
 import './authrization.sass';
-import { NavLink } from 'react-router-dom'
-import { login } from '../../servises'
+import { NavLink, Redirect } from 'react-router-dom';
+import { login } from '../../servises';
 
 
 
@@ -10,7 +10,6 @@ export class Authorization extends React.Component {
     this.state = {
       redirectToReffer: false
     }
-    console.log(this.props)
   }
 
   onSabmit = (e) => {
@@ -28,8 +27,10 @@ export class Authorization extends React.Component {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
 
+    console.log(from)
+
     if (redirectToReferrer) {
-      return <Redirect to={from} />;
+      return <Redirect to={from.pathname} />;
     }
     return (
       <section className="registration">

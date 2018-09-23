@@ -9,8 +9,8 @@ import './appComponent.sass'
 
 
 export class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       user: null
     }
@@ -30,8 +30,9 @@ export class App extends Component {
     return (
       <div className="wrapper">
         <Header
-        user={this.state.user}
-        setLoginState={this.setLoginState}
+          user={this.state.user}
+          setLoginState={this.setLoginState}
+         // history={props.history}
          />
         <Pages setLoginState={this.setLoginState} login={this.state.user} />
         <Footer />
