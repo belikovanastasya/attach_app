@@ -1,10 +1,10 @@
-import './authrization.sass';
 import { NavLink, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { login } from '../../servises';
+import './authrization.sass';
+import { setUser } from '../../store';
 
-
-
-export class Authorization extends React.Component {
+export class AuthorizationComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,17 +17,16 @@ export class Authorization extends React.Component {
     const { email, password } = e.target
     login({ email: email.value, password: password.value })
       .then(user => {
-        this.props.onLogin(user);
+        this.props.dispatch(setUser(user));
         this.setState({ redirectToReferrer: true });
       })
       .catch((err) => console.log('Can\'t login', err))
+
   }
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
-
-    console.log(from)
 
     if (redirectToReferrer) {
       return <Redirect to={from.pathname} />;
@@ -73,5 +72,8 @@ export class Authorization extends React.Component {
   }
 }
 
+const mapStoreToProps = state =>({
+  user: state.user
+  })
 
-
+export const Authorization =  connect(mapStoreToProps)(AuthorizationComponent);

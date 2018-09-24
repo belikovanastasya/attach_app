@@ -1,18 +1,16 @@
-import ReactDom from 'react-dom';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Navigation } from '../Navigation';
 import { Langs } from '../Langs';
 import { Login } from '../Login';
 import { Burger } from '../../components/Burger';
 import {logout} from '../../servises';
 import './header.sass';
+import { removeUser } from '../../store';
 
-export class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export class HeaderComponent extends React.Component {
+
   logout = (user) => {
-    this.props.setLoginState(user);
+    this.props.dispatch(removeUser(user));
     logout();
   }
   render() {
@@ -46,3 +44,11 @@ export class Header extends React.Component {
     )
   }
 }
+
+const mapStoreToProps = state =>({
+  user: state.user
+  })
+
+export const Header =  connect(mapStoreToProps)(HeaderComponent);
+
+

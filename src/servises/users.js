@@ -7,5 +7,5 @@ export const login = (data = {}) => rest.post(
   data
 );
 export const logout = () => rest.get('logout');
-export const createUser = () =>rest.post('public/user', data);
-export const updateUser = () =>rest.put('user', data);
+export const createUser = () => rest.post('public/user', data);
+export const updateUser = () => rest.put('user', data);
