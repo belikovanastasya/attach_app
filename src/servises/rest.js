@@ -1,9 +1,9 @@
-const BASE_URL = 'http://localhost:8086/';
+const BASE_URL = 'http://localhost:3000/';
 
 export const request = (url, method = 'GET', body, options) => {
   const fetchOpts = {
     method,
-    credentials: 'include',
+    //credentials: 'include',
     body: JSON.stringify(body)
   };
   Object.assign(fetchOpts, options);

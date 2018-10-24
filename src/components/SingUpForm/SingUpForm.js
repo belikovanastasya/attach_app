@@ -13,9 +13,8 @@ export class SingUpForm extends React.Component {
   }
   onSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state
-    console.log(email)
-    createUser({ email: email, password: password })
+    const { email, password, password_confirm } = this.state
+    createUser({ email: email, password: password, password_confirm: password_confirm })
       .then(user => {
         this.props.dispatch(setUser(user));
         //this.setState({ redirectToReferrer: true });
@@ -47,7 +46,7 @@ export class SingUpForm extends React.Component {
         <div className="pass-rp">
             <input
               type="password"
-              name="passwordConfirmation"
+              name="password_confirm"
               placeholder="Repeat password"
               value={this.state.repeatPassword}
               onChange={this.onChange}
