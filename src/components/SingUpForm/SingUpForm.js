@@ -5,7 +5,7 @@ export class SingUpForm extends React.Component {
     this.state = {
       email: '',
       password: '',
-      passwordConfirmation: '',
+      password_confirm: '',
     }
   }
   onChange = (e) =>{
@@ -30,7 +30,7 @@ export class SingUpForm extends React.Component {
               type="text"
               placeholder="E-mail"
               name="email"
-              value={this.state.username}
+              value={this.state.email}
               onChange={this.onChange}
             />
         </div>

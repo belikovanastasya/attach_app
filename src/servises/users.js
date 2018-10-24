@@ -1,9 +1,9 @@
 import { rest } from './rest';
 
 
-export const checkUser = () => rest.get('api/users/me');
+export const checkUser = () => rest.get('api/users/checkuser');
 export const login = (data = {}) => rest.post(
-  'public/login',
+  'api/users/login',
   data
 );
 export const logout = () => rest.get('logout');
