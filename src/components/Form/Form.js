@@ -1,9 +1,7 @@
-import reactDom from 'react-dom';
 import './form'
+import './form.sass';
 
-
-import './form.scss';
-
+const buttons = [{singUp: {'name': 'singUp', 'value': 'Sing Up' } },{save : {'name': 'Save', 'value': 'Save' } }]
 export class Form extends Component {
   static get fields() {
     return [
@@ -89,18 +87,18 @@ export class Form extends Component {
     }
     render() {
       const { state, fields } = this;
-      const { excluded, disabled } = this.props;
+      const { excluded, disabled, button } = this.props;
       return (
         <form
           className="form"
           onSubmit={this.save}
         >
-          <ul>{fields
+          <div className="registration-template none-aithorize-template active">{fields
             .filter(({ id }) => !excluded.includes(id))
             .map(({ label, secure, id }, index) => {
               const stateField = state[id];
               return (
-                <li key={label}>
+                <div key={label}>
                   <input
                     type={secure ? 'password' : 'text'}
                     name={id}
@@ -112,15 +110,16 @@ export class Form extends Component {
                     disabled={disabled.includes(id)}
                   />
                   {stateField.error && <span className="error-text">{stateField.error}</span>}
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
           {state.error && <span className="error-text">{state.error}</span>}
           <br/>
-          <input
+          <button
+            className="saveBtn"
             type="submit"
-            value="Save"
+            value={buttons[button]}
             disabled={this.getDisabledState()}
           />
         </form>
@@ -132,5 +131,6 @@ Form.defaultProps = {
   excluded: [],
   disabled: [],
   skipped: [],
-  onSubmit: _ => _ 
+  button: '',
+  onSubmit: _ => _
 };

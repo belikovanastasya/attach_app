@@ -6,7 +6,16 @@ export class SingUpForm extends React.Component {
       email: '',
       password: '',
       password_confirm: '',
+      error: ''
     }
+  }
+  static getDerivedStateFromProps(nextProps) {
+    if (!nextProps.data) {
+      return null;
+    }
+    const state = {};
+    Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
+    return state;
   }
   onChange = (e) =>{
     this.setState({[e.target.name]: e.target.value})
@@ -17,7 +26,7 @@ export class SingUpForm extends React.Component {
     createUser({ email: email, password: password, password_confirm: password_confirm })
       .then(user => {
         this.props.dispatch(setUser(user));
-        //this.setState({ redirectToReferrer: true });
+        // this.setState({ redirectToReferrer: true });
       })
       .catch((err) => console.log('Can\'t login', err))
   }
