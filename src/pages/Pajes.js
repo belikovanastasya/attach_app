@@ -11,7 +11,7 @@ import { Project } from './Project';
 import { Contacts } from './Contacts';
 import { Newses } from './Newses';
 import { Authorization } from './Authorization';
-import { Registration } from "./Registration/Registration";
+import { Registration} from "./Registration/Registration";
 
 
 export class Pages extends Component {

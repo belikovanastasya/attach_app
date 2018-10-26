@@ -1,12 +1,22 @@
 import './Registration.sass';
-import { SingUpForm } from '../../components/SingUpForm';
-import { Form } from '../../components/Form'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { createUser } from '../../servises/users';
+import { Form } from '../../components/Form';
+import { setUser } from '../../store';
 
-export class Registration extends React.Component{
+export class RegistrationComponent extends React.Component{
   constructor(props) {
     super(props)
   }
-
+  create = (user) => {
+    createUser({ email:user.email, password: user.password, password_confirm: user.password_confirm })
+      .then(user => {
+        this.props.dispatch(setUser(user))
+        this.props.history.push('/user');
+      })
+      .catch((err) => console.log('Can\'t login', err))
+  }
 render() {
   return (
     <section className="registration">
@@ -14,14 +24,21 @@ render() {
         <div className="registration_wrap">
         <Form
         excluded={['firstName', 'lastName', 'description']}
-        button={'singUp'}
+        onSubmit={this.create}
+        buttonName='singUp'
          />
+         <span className="warn">By clicking “Sign Up”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy statement</a>. We’ll occasionally send you account related emails.</span>
         </div>
       </div>
     </section>
   );
 }
 }
+
+const mapStoreToProps = state => ({
+  user: state.user
+})
+export const Registration = withRouter(connect(mapStoreToProps)(RegistrationComponent));
 
 
 

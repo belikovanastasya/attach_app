@@ -1,15 +1,15 @@
 import './form'
 import './form.sass';
 
-const buttons = [{singUp: {'name': 'singUp', 'value': 'Sing Up' } },{save : {'name': 'Save', 'value': 'Save' } }]
+
 export class Form extends Component {
   static get fields() {
     return [
-      { id: 'email', label: 'email', reg: /^\w+@\w+\.[a-z]{2,}$/ },
-      { id: 'firstName', label: 'first name', reg: /^[^ ]{3,20}$/ },
-      { id: 'lastName', label: 'last name', reg: /^[^ ]{3,20}$/ },
-      { id: 'password', label: 'password', reg: /^[^ ]{6,20}$/, secure: true },
-      { id: 'repeatPassword', label: 'repeat password', reg: /^[^ ]{6,20}$/, secure: true },
+      { id: 'email', label: 'Email', reg: /^\w+@\w+\.[a-z]{2,}$/ },
+      { id: 'firstName', label: 'First name', reg: /^[^ ]{3,20}$/ },
+      { id: 'lastName', label: 'Last name', reg: /^[^ ]{3,20}$/ },
+      { id: 'password', label: 'Password', reg: /^[^ ]{6,20}$/, secure: true },
+      { id: 'password_confirm', label: 'Repeat password', reg: /^[^ ]{6,20}$/, secure: true },
       { id: 'description', label: 'About me', reg: /^[^ ]{3,20}$/, secure: true }
     ];
   }
@@ -23,7 +23,9 @@ export class Form extends Component {
     };
     this.fields.forEach(field => (this.state[field.id] = { value: '' }));
   }
-
+  componentDidMount() {
+    this.fields = this.getActualFields();
+  }
   static getDerivedStateFromProps(nextProps) {
     if (!nextProps.data) {
       return null;
@@ -40,7 +42,6 @@ export class Form extends Component {
   validate = (index) => {
     const field = this.fields[index];
     const stateField = this.state[field.id];
-
     if (field.reg.test(stateField.value)) {
       stateField.error = '';
     } else {
@@ -64,7 +65,7 @@ export class Form extends Component {
       const { state } = this;
       let error = '';
       event.preventDefault();
-      if (state.password.value !== state.repeatPassword.value) {
+      if (state.password.value !== state.password_confirm.value) {
         error = 'Passwords should be the same';
       }
       this.setState({ error });
@@ -87,7 +88,8 @@ export class Form extends Component {
     }
     render() {
       const { state, fields } = this;
-      const { excluded, disabled, button } = this.props;
+      const { excluded, disabled, buttonName } = this.props;
+      const buttons = {'singUp': {'name': 'sing Up', 'value': 'Sing Up'}, 'save' : {'name': 'Save', 'value': 'Save'}}
       return (
         <form
           className="form"
@@ -103,7 +105,7 @@ export class Form extends Component {
                     type={secure ? 'password' : 'text'}
                     name={id}
                     className={stateField.error ? 'error' : 'correct'}
-                    placeholder={label.toUpperCase()}
+                    placeholder={label}
                     value={stateField.value}
                     onChange={this.setValue}
                     onBlur={() => this.validate(index)}
@@ -115,13 +117,12 @@ export class Form extends Component {
             })}
           </div>
           {state.error && <span className="error-text">{state.error}</span>}
-          <br/>
           <button
-            className="saveBtn"
+            className="saveBtn btn"
             type="submit"
-            value={buttons[button]}
             disabled={this.getDisabledState()}
-          />
+          ><span>{buttons[buttonName].name}</span>
+          </button>
         </form>
       );
     }
@@ -131,6 +132,6 @@ Form.defaultProps = {
   excluded: [],
   disabled: [],
   skipped: [],
-  button: '',
+  buttonName: 'Save',
   onSubmit: _ => _
 };
