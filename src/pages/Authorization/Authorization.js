@@ -9,27 +9,43 @@ export class AuthorizationComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToReffer: false
+      redirectToReffer: false,
+      email: '',
+      password: '',
+      errors: null
     }
   }
+  handleInputChange = (e) => {
+    this.setState({
+        [e.target.name]: e.target.value
+    })
+}
 
   onSabmit = (e) => {
     e.preventDefault();
-    const { email, password } = e.target
+    let error = '';
+    const { email, password } = this.state;
     login({ email: email.value, password: password.value })
       .then(user => {
         this.props.dispatch(setUser(user));
         this.props.dispatch(getErrors(null))
-
         this.setState({ redirectToReferrer: true });
       })
       .catch((err) => this.props.dispatch(getErrors(err)))
   }
+  componentWillReceiveProps(nextProps) {
+
+    if(nextProps.errors) {
+        this.setState({
+            errors: nextProps.errors
+        });
+    }
+}
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { redirectToReferrer } = this.state;
-
+    console.log(this.state.errors)
     if (redirectToReferrer) {
       return <Redirect to={from.pathname} />;
     }
@@ -46,14 +62,17 @@ export class AuthorizationComponent extends React.Component {
                     type="text"
                     placeholder="E-mail"
                     name="email"
-                    defaultValue="admin@a.com" />
+                    onChange={this.handleInputChange}
+                    className={this.state.errors ? 'invalid' : ''}
+                     />
                 </div>
+                {/* {errors.email && <span>{errors.email}</span>} */}
                 <div className="pass">
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
-                    defaultValue="admin"
+                    onChange={this.handleInputChange}
                   />
                 </div>
                 <a href="#" className="forgotPass-link">Forgot your password?</a>
