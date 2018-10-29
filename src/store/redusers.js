@@ -1,4 +1,4 @@
-import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER } from './actions';
+import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS } from './actions';
 
 
 export const user = (state = null, {type, data}) => {
@@ -12,6 +12,15 @@ export const user = (state = null, {type, data}) => {
 
         case REMOVE_USER: {
             return null;
+        }
+    }
+    return state;
+}
+
+export const errors = (state = null, {type, data}) => {
+    switch(type) {
+        case GET_ERRORS: {
+            return data;
         }
     }
     return state;

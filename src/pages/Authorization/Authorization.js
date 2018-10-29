@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { login } from '../../servises';
 import './authrization.sass';
 import { setUser } from '../../store';
-
+import { getErrors } from '../../store'
+;
 export class AuthorizationComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -18,10 +19,11 @@ export class AuthorizationComponent extends React.Component {
     login({ email: email.value, password: password.value })
       .then(user => {
         this.props.dispatch(setUser(user));
+        this.props.dispatch(getErrors(null))
+
         this.setState({ redirectToReferrer: true });
       })
-      .catch((err) => console.log('Can\'t login', err))
-
+      .catch((err) => this.props.dispatch(getErrors(err)))
   }
 
   render() {
@@ -73,7 +75,8 @@ export class AuthorizationComponent extends React.Component {
 }
 
 const mapStoreToProps = state =>({
-  user: state.user
+  user: state.user,
+  errors: state.errors
   })
 
 export const Authorization =  connect(mapStoreToProps)(AuthorizationComponent);

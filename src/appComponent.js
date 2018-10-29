@@ -4,7 +4,8 @@ import { Footer } from "./parts/Footer";
 import { Pages } from './pages/Pajes';
 import { checkUser } from './servises';
 import { setUser} from './store';
-import { withRouter} from 'react-router-dom'
+import { getErrors } from './store'
+import { withRouter} from 'react-router-dom';
 import './appComponent.sass';
 
 export class AppComponent extends Component {
@@ -31,7 +32,7 @@ export class AppComponent extends Component {
   }
 }
 
-const mapStoreToProps = ({user}) =>({user})
+const mapStoreToProps = ({user, errors}) =>({user, errors})
 
 export const App = withRouter(connect(mapStoreToProps)(AppComponent))
 

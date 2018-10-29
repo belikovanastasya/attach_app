@@ -1,9 +1,10 @@
 import './Registration.sass';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createUser } from '../../servises/users';
 import { Form } from '../../components/Form';
+import { createUser } from '../../servises/users';
 import { setUser } from '../../store';
+import { getErrors } from '../../store';
 
 export class RegistrationComponent extends React.Component{
   constructor(props) {
@@ -14,13 +15,15 @@ export class RegistrationComponent extends React.Component{
       .then(user => {
         this.props.dispatch(setUser(user))
         this.props.history.push('/user');
+        this.props.dispatch(getErrors(null));
       })
-      .catch((err) => console.log('Can\'t login', err))
+      .catch((err) => this.props.dispatch(getErrors(err)))
   }
 render() {
   return (
     <section className="registration">
       <div className="container">
+        {this.props.errors && <span>{this.props.errors}</span>}
         <div className="registration_wrap">
         <Form
         excluded={['firstName', 'lastName', 'description']}
@@ -36,7 +39,8 @@ render() {
 }
 
 const mapStoreToProps = state => ({
-  user: state.user
+  user: state.user,
+  errors: state.errors
 })
 export const Registration = withRouter(connect(mapStoreToProps)(RegistrationComponent));
 
