@@ -9,7 +9,7 @@ import { User } from './User';
 import { About } from './About';
 import { Project } from './Project';
 import { Contacts } from './Contacts';
-import { Newses } from './Newses';
+import { News } from './News';
 import { Authorization } from './Authorization';
 import { Registration} from "./Registration/Registration";
 
@@ -27,7 +27,7 @@ export class Pages extends Component {
           <Route path="/" exact component={Main} key="home" />,
           <Route path="/about" component={About} key="about" />,
           <Route path="/project" component={Project} key="project" />,
-          <Route path="/newses" component={Newses} key="news" />,
+          <Route path="/newses" component={News} key="news" />,
           <Route path="/contacts" component={Project} key="contacts" />,
           <Route render={({ location }) => <h1>Requested page {location.pathname} not found</h1>} />
         </Switch>
