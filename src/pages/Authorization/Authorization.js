@@ -25,7 +25,7 @@ export class AuthorizationComponent extends React.Component {
     e.preventDefault();
     let error = '';
     const { email, password } = this.state;
-    login({ email: email.value, password: password.value })
+    login({ email,password })
       .then(user => {
         this.props.dispatch(setUser(user));
         this.props.dispatch(getErrors(null))
@@ -44,8 +44,7 @@ export class AuthorizationComponent extends React.Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: "/" } };
-    const { redirectToReferrer } = this.state;
-    console.log(this.state.errors)
+    const { redirectToReferrer, errors } = this.state;
     if (redirectToReferrer) {
       return <Redirect to={from.pathname} />;
     }
@@ -66,15 +65,17 @@ export class AuthorizationComponent extends React.Component {
                     className={this.state.errors ? 'invalid' : ''}
                      />
                 </div>
-                {/* {errors.email && <span>{errors.email}</span>} */}
+                {errors && <span className="error-text">{errors.email}</span>}
                 <div className="pass">
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
                     onChange={this.handleInputChange}
+                    className={this.state.errors ? 'invalid' : ''}
                   />
                 </div>
+                {errors && <span className="error-text">{errors.password}</span>}
                 <a href="#" className="forgotPass-link">Forgot your password?</a>
                 <button className="btn signUpBtn">
                   <span>Log In</span>
