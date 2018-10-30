@@ -90,7 +90,7 @@ export class Form extends Component {
     render() {
       const { state, fields } = this;
       const { excluded, disabled, buttonName } = this.props;
-      const buttons = {'singUp': {'name': 'sing Up', 'value': 'Sing Up'}, 'save' : {'name': 'Save', 'value': 'Save'}}
+      const buttons = {'signUp': {'name': 'sing Up', 'value': 'Sing Up'}, 'save' : {'name': 'Save', 'value': 'Save'}}
       return (
         <form
           className="form"
