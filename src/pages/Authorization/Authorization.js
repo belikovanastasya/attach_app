@@ -2,9 +2,11 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../servises';
 import './authrization.sass';
-import { setUser } from '../../store';
-import { getErrors } from '../../store'
-;
+import { setUser, setCurrentUser } from '../../store';
+import { getErrors } from '../../store';
+import { setAuthToken } from '../../servises/setAuthToken';
+import jwt_decode from 'jwt-decode';
+
 export class AuthorizationComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -27,8 +29,16 @@ export class AuthorizationComponent extends React.Component {
     const { email, password } = this.state;
     login({ email,password })
       .then(user => {
-        this.props.dispatch(setUser(user));
-        this.props.dispatch(getErrors(null))
+        this.props.dispatch(setUser(user))
+        .then(res => {
+        const { token } = res.data;
+        localStorage.setItem('jwtToken', token);
+        setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(setCurrentUser(decoded));
+
+        })
+        this.props.dispatch(getErrors(null));
         this.setState({ redirectToReferrer: true });
       })
       .catch((err) => this.props.dispatch(getErrors(err)))

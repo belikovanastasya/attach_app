@@ -1,4 +1,5 @@
-import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS } from './actions';
+import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS, SET_CURRENT_USER } from './actions';
+import isEmpty from '../servises/isEmpty';
 
 
 export const user = (state = null, {type, data}) => {
@@ -12,6 +13,12 @@ export const user = (state = null, {type, data}) => {
 
         case REMOVE_USER: {
             return null;
+        }
+        case SET_CURRENT_USER:
+        return {
+            ...state,
+            isAuthenticated: !isEmpty(data.payload),
+            user: data.payload
         }
     }
     return state;
