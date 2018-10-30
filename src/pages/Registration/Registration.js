@@ -2,6 +2,7 @@ import './Registration.sass';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Form } from '../../components/Form';
+import { ErrorMsg } from '../../components/ErrorMsg';
 import { createUser } from '../../servises/users';
 import { setUser } from '../../store';
 import { getErrors } from '../../store';
@@ -19,16 +20,20 @@ export class RegistrationComponent extends React.Component{
       })
       .catch((err) => this.props.dispatch(getErrors(err)))
   }
+  clearErrors = () => {
+    this.props.dispatch(getErrors(null));
+  }
 render() {
   return (
     <section className="registration">
       <div className="container">
-        {this.props.errors && <span>{this.props.errors}</span>}
+        {this.props.errors && < ErrorMsg errorMsg={this.props.errors}/>}
         <div className="registration_wrap">
         <Form
         excluded={['firstName', 'lastName', 'description']}
         onSubmit={this.create}
-        buttonName='singUp'
+        buttonName='signUp'
+        clearErrors = {this.clearErrors}
          />
          <span className="warn">By clicking “Sign Up”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy statement</a>. We’ll occasionally send you account related emails.</span>
         </div>

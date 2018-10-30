@@ -38,6 +38,7 @@ export class Form extends Component {
     this.setState({
       [target.name]: { value: target.value }
     });
+    this.props.clearErrors();
   }
   validate = (index) => {
     const field = this.fields[index];
@@ -104,7 +105,7 @@ export class Form extends Component {
                   <input
                     type={secure ? 'password' : 'text'}
                     name={id}
-                    className={stateField.error ? 'error' : 'correct'}
+                    className={stateField.error ? 'invalid' : 'correct'}
                     placeholder={label}
                     value={stateField.value}
                     onChange={this.setValue}
@@ -133,5 +134,6 @@ Form.defaultProps = {
   disabled: [],
   skipped: [],
   buttonName: 'Save',
+  clearErrors: _=>_,
   onSubmit: _ => _
 };
