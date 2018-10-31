@@ -26,8 +26,8 @@ export class AuthorizationComponent extends React.Component {
     let error = '';
     const { email, password } = this.state;
     login({ email,password })
-      .then(user => {
-        this.props.dispatch(setUser(user));
+      .then(res => {
+        this.props.dispatch(setUser(res.user));
         this.props.dispatch(getErrors(null))
         this.setState({ redirectToReferrer: true });
       })

@@ -15,7 +15,7 @@ export class AppComponent extends Component {
   }
   componentDidMount(){
     checkUser()
-    .then(user => this.props.dispatch(setUser(user)))
+    .then(res => this.props.dispatch(setUser(res.user)))
     .catch((err) => console.log('Can\'t login', err))
   }
 
