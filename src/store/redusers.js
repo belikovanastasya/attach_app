@@ -32,3 +32,22 @@ export const errors = (state = null, {type, data}) => {
     }
     return state;
 }
+
+const initialState = {
+    isAuthenticated: false,
+    user: {}
+}
+
+export const current_user = (state = initialState, {type, data}) => {
+    switch(type) {
+        case SET_CURRENT_USER:
+        return {
+            ...state,
+            isAuthenticated: !isEmpty(data.payload),
+            user: data.payload
+        }
+
+    }
+    return state;
+
+}

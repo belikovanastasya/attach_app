@@ -1,3 +1,5 @@
+import { setAuthToken } from "./setAuthToken";
+
 const BASE_URL = 'http://localhost:3000/';
 
 export const request = (url, method = 'GET', body, options) => {
@@ -24,9 +26,7 @@ export const rest = {
   },
   post(url, body) {
     const options = {
-      headers: {
-        'Content-type': 'application/json; charset=utf-8'
-      }
+      headers: setAuthToken(localStorage.jwtToken)
     };
     return request(url, 'POST', body, options);
   },

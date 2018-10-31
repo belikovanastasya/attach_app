@@ -25,22 +25,22 @@ export class AuthorizationComponent extends React.Component {
 
   onSabmit = (e) => {
     e.preventDefault();
-    let error = '';
     const { email, password } = this.state;
     login({ email,password })
-      .then(user => {
-        this.props.dispatch(setUser(user))
+      .then(res => {
+        this.props.dispatch(setUser(res.user))
+        this.props.dispatch(getErrors(null));
+        this.setState({ redirectToReferrer: true });
+        return res;
+      })
         .then(res => {
-        const { token } = res.data;
+        const token = res.token;
         localStorage.setItem('jwtToken', token);
-        setAuthToken(token);
+        //setAuthToken(token);
         const decoded = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
 
         })
-        this.props.dispatch(getErrors(null));
-        this.setState({ redirectToReferrer: true });
-      })
       .catch((err) => this.props.dispatch(getErrors(err)))
   }
   componentWillReceiveProps(nextProps) {
