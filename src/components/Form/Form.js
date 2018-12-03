@@ -1,4 +1,4 @@
-import './form'
+import './Form'
 import './form.sass';
 
 
