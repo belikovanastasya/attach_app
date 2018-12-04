@@ -1,8 +1,9 @@
-import  './user.sass';
+import React from 'react';
+import './user.sass';
 
 
 export const User = () => (
   <React.Fragment>
     <p>Hello, User</p>
   </React.Fragment>
-)
+);

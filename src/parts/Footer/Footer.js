@@ -1,6 +1,4 @@
-import ReactDom from 'react-dom';
-import './footer.sass'
-//import FooterNav from '../FooterNav'
+import './footer.sass';
 
 
 export const Footer = () => (
@@ -11,4 +9,4 @@ export const Footer = () => (
       <span>Copyright © 2018 Attach Inc. All rights reserved.</span>
     </div>
   </div>
-)
+);

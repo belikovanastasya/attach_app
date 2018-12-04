@@ -1,20 +1,20 @@
-import { Route, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Redirect } from 'react-router-dom';
 
 export const PrivateRoute = ({ component: Component, login, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={props => (
       login ? (
         <Component {...props} />
       ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }}
+        />
+      )
+    )
     }
   />
 );

@@ -1,6 +1,5 @@
-import ReactDom from 'react-dom';
 import { langsList } from '../../constants';
-import './langs.sass'
+import './langs.sass';
 
 export const Langs = () => (
   <ul className="langs">
