@@ -19,6 +19,9 @@ export class RegistrationComponent extends React.Component {
   clearErrors = () => {
     this.props.dispatch(getErrors(null));
   }
+  // componentWillMount(){
+  //   this.props.dispatch(getErrors(null))
+  // }
   render() {
     return (
       <section className="registration">
