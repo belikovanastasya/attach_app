@@ -1,6 +1,5 @@
-import './Form'
+import './Form';
 import './form.sass';
-
 
 export class Form extends Component {
   static get fields() {
@@ -90,7 +89,7 @@ export class Form extends Component {
     render() {
       const { state, fields } = this;
       const { excluded, disabled, buttonName } = this.props;
-      const buttons = {'signUp': {'name': 'sing Up', 'value': 'Sing Up'}, 'save' : {'name': 'Save', 'value': 'Save'}}
+      const buttons = { signUp: { name: 'sing Up', value: 'Sing Up' }, save: { name: 'Save', value: 'Save' } };
       return (
         <form
           className="form"
@@ -134,6 +133,6 @@ Form.defaultProps = {
   disabled: [],
   skipped: [],
   buttonName: 'Save',
-  clearErrors: _=>_,
+  clearErrors: _ => _,
   onSubmit: _ => _
 };

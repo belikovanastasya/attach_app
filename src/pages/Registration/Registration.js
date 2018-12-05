@@ -9,7 +9,7 @@ import { setUser, getErrors } from '../../store';
 export class RegistrationComponent extends React.Component {
   create = (user) => {
     createUser({ email: user.email, password: user.password, password_confirm: user.password_confirm })
-      .then(user => {
+      .then((user) => {
         this.props.dispatch(setUser(user));
         this.props.history.push('/user');
         this.props.dispatch(getErrors(null));

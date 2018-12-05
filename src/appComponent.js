@@ -1,30 +1,25 @@
 import { connect } from 'react-redux';
-import { Header } from "./parts/Header";
-import { Footer } from "./parts/Footer";
+import { withRouter } from 'react-router-dom';
+import { Header } from './parts/Header';
+import { Footer } from './parts/Footer';
 import { Pages } from './pages/Pajes';
 import { checkUser } from './servises';
-import { setUser} from './store';
-import { getErrors } from './store'
-import { withRouter} from 'react-router-dom';
+import { setUser } from './store';
 import './appComponent.sass';
 
 export class AppComponent extends Component {
-
   setLoginState = (user) => {
     this.props.dispatch(setUser(user));
   }
-  componentDidMount(){
+  componentDidMount() {
     checkUser()
-    .then(res => this.props.dispatch(setUser(res.user)))
-    .catch((err) => console.log('Can\'t login', err))
+      .then(res => this.props.dispatch(setUser(res.user)))
+      .catch(err => console.log('Can\'t login', err));
   }
-
   render() {
-
-    const { islogin } = this.props
     return (
       <div className="wrapper">
-        <Header/>
+        <Header />
         <Pages login={this.props.user} />
         <Footer />
       </div>
@@ -32,7 +27,7 @@ export class AppComponent extends Component {
   }
 }
 
-const mapStoreToProps = ({user, errors}) =>({user, errors})
+const mapStoreToProps = ({ user, errors }) => ({ user, errors });
 
-export const App = withRouter(connect(mapStoreToProps)(AppComponent))
+export const App = withRouter(connect(mapStoreToProps)(AppComponent));
 

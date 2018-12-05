@@ -1,5 +1,3 @@
-import './news.sass'
+import './news.sass';
 
-export const News = () => {
-  return (<div></div>)
-}
+export const News = () => (<div />);

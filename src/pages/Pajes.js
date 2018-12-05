@@ -14,7 +14,7 @@ export class Pages extends Component {
     return (
       <Switch>
         <PrivateRoute login={this.props.login} path="/user" component={User} />,
-        <Route path="/login" render={({ location }) => <Authorization location={location}onLogin={this.props.setLoginState} />} />},
+        <Route path="/login" render={({ location }) => <Authorization location={location}onLogin={this.props.setLoginState} />} />,
         <Route path="/registration" render={() => <Registration onLogin={this.setLoginState} />} />,
         <Route path="/" exact component={Main} key="home" />,
         <Route path="/about" component={About} key="about" />,
