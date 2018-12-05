@@ -2,14 +2,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../servises';
 import './authrization.sass';
-<<<<<<< HEAD
-import { setUser, setCurrentUser } from '../../store';
-import { getErrors } from '../../store';
-import { setAuthToken } from '../../servises/setAuthToken';
-import jwt_decode from 'jwt-decode';
-=======
 import { setUser, getErrors } from '../../store';
->>>>>>> b4da1dde549501a548cc590c3cdecda9035ed6b9
 
 export class AuthorizationComponent extends React.Component {
   constructor(props) {
