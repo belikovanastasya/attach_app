@@ -1,5 +1,4 @@
 import './project.sass';
 
-export const Project = () => {
-  return (<div></div>)
-}
+
+export const Project = () => (<div>project</div>);

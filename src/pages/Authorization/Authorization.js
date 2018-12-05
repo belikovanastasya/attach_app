@@ -2,58 +2,52 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../servises';
 import './authrization.sass';
+<<<<<<< HEAD
 import { setUser, setCurrentUser } from '../../store';
 import { getErrors } from '../../store';
 import { setAuthToken } from '../../servises/setAuthToken';
 import jwt_decode from 'jwt-decode';
+=======
+import { setUser, getErrors } from '../../store';
+>>>>>>> b4da1dde549501a548cc590c3cdecda9035ed6b9
 
 export class AuthorizationComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToReffer: false,
       email: '',
       password: '',
       errors: null
-    }
+    };
   }
   handleInputChange = (e) => {
     this.setState({
-        [e.target.name]: e.target.value
-    })
-}
+      [e.target.name]: e.target.value
+    });
+  }
 
   onSabmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    login({ email,password })
-      .then(res => {
-        this.props.dispatch(setUser(res.user))
+    login({ email, password })
+      .then((res) => {
+        this.props.dispatch(setUser(res.user));
         this.props.dispatch(getErrors(null));
         this.setState({ redirectToReferrer: true });
         return res;
       })
-        .then(res => {
-        const token = res.token;
-        localStorage.setItem('jwtToken', token);
-        //setAuthToken(token);
-        const decoded = jwt_decode(token);
-        dispatch(setCurrentUser(decoded));
-
-        })
-      .catch((err) => this.props.dispatch(getErrors(err)))
+      .catch(err => this.props.dispatch(getErrors(err)));
   }
   componentWillReceiveProps(nextProps) {
-
-    if(nextProps.errors) {
-        this.setState({
-            errors: nextProps.errors
-        });
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
-}
+  }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { redirectToReferrer, errors } = this.state;
     if (redirectToReferrer) {
       return <Redirect to={from.pathname} />;
@@ -73,7 +67,7 @@ export class AuthorizationComponent extends React.Component {
                     name="email"
                     onChange={this.handleInputChange}
                     className={this.state.errors ? 'invalid' : ''}
-                     />
+                  />
                 </div>
                 {errors && <span className="error-text">{errors.email}</span>}
                 <div className="pass">
@@ -90,9 +84,8 @@ export class AuthorizationComponent extends React.Component {
                 <button className="btn signUpBtn">
                   <span>Log In</span>
                 </button>
-                <span>Don't have an account?</span>
-                <NavLink to='./registration' className="signInLink">Sign Up</NavLink>
-                <a href="#" ></a>
+                <span>{'Don\'t have an account?'}</span>
+                <NavLink to="./registration" className="signInLink">Sign Up</NavLink>
                 <span>or</span>
                 <button type="submit" className="fbSignUp">Sign Up with facebook</button>
               </div>
@@ -104,9 +97,9 @@ export class AuthorizationComponent extends React.Component {
   }
 }
 
-const mapStoreToProps = state =>({
+const mapStoreToProps = state => ({
   user: state.user,
   errors: state.errors
-  })
+});
 
-export const Authorization =  connect(mapStoreToProps)(AuthorizationComponent);
+export const Authorization = connect(mapStoreToProps)(AuthorizationComponent);

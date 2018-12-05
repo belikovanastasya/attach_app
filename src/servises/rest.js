@@ -5,14 +5,13 @@ const BASE_URL = 'http://localhost:3000/';
 export const request = (url, method = 'GET', body, options) => {
   const fetchOpts = {
     method,
-    //credentials: 'include',
     body: JSON.stringify(body)
   };
   Object.assign(fetchOpts, options);
 
   return fetch(`${BASE_URL}${url}`, fetchOpts)
     .then(response => response.json())
-    .then(data => {
+    .then((data) => {
       if (data.error) {
         return Promise.reject(data.error);
       }

@@ -2,52 +2,26 @@ import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS, SET_CURREN
 import isEmpty from '../servises/isEmpty';
 
 
-export const user = (state = null, {type, data}) => {
-    switch(type) {
-        case UPDATE_USER:
-        case SET_USER:
-        case CREATE_USER:
-            {
-            return data;
-        }
-
-        case REMOVE_USER: {
-            return null;
-        }
-        case SET_CURRENT_USER:
-        return {
-            ...state,
-            isAuthenticated: !isEmpty(data.payload),
-            user: data.payload
-        }
+export const user = (state = null, { type, data }) => {
+  switch (type) {
+    case UPDATE_USER:
+    case SET_USER:
+    case CREATE_USER:
+    {
+      return data;
     }
-    return state;
-}
-
-export const errors = (state = null, {type, data}) => {
-    switch(type) {
-        case GET_ERRORS: {
-            return data;
-        }
+    case REMOVE_USER: {
+      return null;
     }
-    return state;
-}
+  }
+  return state;
+};
 
-const initialState = {
-    isAuthenticated: false,
-    user: {}
-}
-
-export const current_user = (state = initialState, {type, data}) => {
-    switch(type) {
-        case SET_CURRENT_USER:
-        return {
-            ...state,
-            isAuthenticated: !isEmpty(data.payload),
-            user: data.payload
-        }
-
+export const errors = (state = null, { type, data }) => {
+  switch (type) {
+    case GET_ERRORS: {
+      return data;
     }
-    return state;
-
-}
+  }
+  return state;
+};

@@ -1,7 +1,3 @@
 import './errorMsg.sass';
 
-export const ErrorMsg = (props) => {
-    return (
-        <div className="error-msg">{props.errorMsg}</div>
-    )
-}
+export const ErrorMsg = props => <div className="error-msg">{props.errorMsg}</div>;
