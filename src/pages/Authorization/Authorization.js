@@ -1,6 +1,7 @@
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../servises';
+import { ErrorMsg } from '../../components/ErrorMsg';
 import './authrization.sass';
 import { setUser, getErrors } from '../../store';
 
@@ -10,7 +11,6 @@ export class AuthorizationComponent extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: null
     };
   }
   handleInputChange = (e) => {
@@ -30,13 +30,13 @@ export class AuthorizationComponent extends React.Component {
       })
       .catch(err => this.props.dispatch(getErrors(err)));
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
@@ -47,6 +47,7 @@ export class AuthorizationComponent extends React.Component {
     return (
       <section className="registration">
         <div className="container">
+        {this.props.errors && <ErrorMsg errorMsg={this.props.errors} />}
           <div className="registration_wrap">
             <form
               onSubmit={this.onSabmit}
@@ -58,20 +59,20 @@ export class AuthorizationComponent extends React.Component {
                     placeholder="E-mail"
                     name="email"
                     onChange={this.handleInputChange}
-                    className={this.state.errors ? 'invalid' : ''}
+                    className={this.props.errors ? 'invalid' : ''}
                   />
                 </div>
-                {errors && <span className="error-text">{errors.email}</span>}
+                {/* {errors && <span className="error-text">{errors.email}</span>} */}
                 <div className="pass">
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
                     onChange={this.handleInputChange}
-                    className={this.state.errors ? 'invalid' : ''}
+                    className={this.props.errors ? 'invalid' : ''}
                   />
                 </div>
-                {errors && <span className="error-text">{errors.password}</span>}
+                {/* {errors && <span className="error-text">{errors.password}</span>} */}
                 <a href="#" className="forgotPass-link">Forgot your password?</a>
                 <button className="btn signUpBtn">
                   <span>Log In</span>
