@@ -23,7 +23,7 @@ export class RegistrationComponent extends React.Component {
     return (
       <section className="registration">
         <div className="container">
-          {this.props.errors && <ErrorMsg errorMsg={this.props.errors} />}
+          {/* {this.props.errors && <ErrorMsg errorMsg={this.props.errors} />} */}
           <div className="registration_wrap">
             <Form
               excluded={['firstName', 'lastName', 'description']}

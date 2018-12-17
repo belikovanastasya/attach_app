@@ -19,6 +19,7 @@ export const user = (state = null, { type, data }) => {
 export const errors = (state = null, { type, data }) => {
   switch (type) {
     case GET_ERRORS: {
+      console.log(data)
       return data;
     }
   }
