@@ -11,7 +11,7 @@ export class RegistrationComponent extends React.Component {
       .then((user) => {
         this.props.dispatch(setUser(user));
         this.props.dispatch(setFlashMessages({
-          type: 'success',
+          isSuccess: true,
           text: 'You signed up successfully'
         }))
         this.props.history.push('/user');

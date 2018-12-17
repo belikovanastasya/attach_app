@@ -8,7 +8,7 @@
 	-webkit-tap-highlight-color: transparent
 .wrapper
 	width: 100%
-	overflow: hidden	
+	overflow: hidden
 .container
 	width: 100%
 	max-width: 1200px
@@ -27,10 +27,10 @@ ul
 	margin: 0
 	padding: 0
 	li
-		list-style: none	
+		list-style: none
 a
 	color: inherit
-	text-decoration: none		
+	text-decoration: none
 .langs
 	display: flex
 	flex-direction: row
@@ -82,7 +82,7 @@ a
 	border: none
 	&.center
 		margin: 0 auto
-	&.black	
+	&.black
 		background: #000
 		color: $white
 		span
@@ -90,14 +90,14 @@ a
 				background: $white
 	&.wide
 		width: 220px
-		height: 50px		
-	&:hover 
+		height: 50px
+	&:hover
 		span
 			transform: translateX(10px)
 			&:after
 				transform: translate(-10px, 10px)
 				opacity: 1
-	span 
+	span
 		position: relative
 		display: inline-block
 		transition: all 0.5s ease
@@ -120,29 +120,29 @@ a
 	height: 100px
 	&.center
 		justify-content: center
-.h_main 
+.h_main
 	font-size: 20px
-	font-family: $lato	
+	font-family: $lato
 	text-align: center
 	text-transform: uppercase
 	font-weight: 900
 	line-height: 1.5
 	margin-bottom: 20px
 	+rmin(1200)
-		font-size: 32px	
-.h_add 
+		font-size: 32px
+.h_add
 	font-size: 12px
-	font-family: $lato	
+	font-family: $lato
 	text-transform: uppercase
 	text-align: center
-	line-height: 1.5	
+	line-height: 1.5
 	+rmin(1200)
-		font-size: 14px	
-	
+		font-size: 14px
+
 .social
 	width: 70px
 	display: flex
-	flex-direction: row 
+	flex-direction: row
 	justify-content: space-between
 	align-items: center
 	.fb
@@ -150,7 +150,7 @@ a
 		height: 30px
 		//background: url('../img/facebook.svg')
 		background-repeat: no-repeat
-		background-position: center center	
+		background-position: center center
 		background-size: 30px
 		display: flex
 	.insta
@@ -159,5 +159,10 @@ a
 		display: flex
 		//background: url('../img/insta.svg')
 		background-repeat: no-repeat
-		background-position: center center	
+		background-position: center center
 		background-size: 30px
+.inner-section
+	width: 100%
+	padding: 120px 0 0 0
+	+rmin(1200)
+		padding: 200px 0 0 0

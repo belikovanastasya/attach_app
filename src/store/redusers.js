@@ -18,7 +18,6 @@ export const user = (state = null, { type, data }) => {
 };
 
 export const flashMessages = (state = [], {type, message}) => {
-  console.log(message)
   switch (type) {
     case ADD_FLASH_MESSAGES:
     {
@@ -26,7 +25,7 @@ export const flashMessages = (state = [], {type, message}) => {
         ...state,
         {
           id: shortid.generate(),
-          type: message.type,
+          isSuccess: message.isSuccess,
           text: message.text
         }
       ]
