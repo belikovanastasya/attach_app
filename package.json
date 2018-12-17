@@ -25,7 +25,8 @@
     "react-router-dom": "^4.2.2",
     "react-toastr": "^3.0.0",
     "redux": "^4.0.0",
-    "resolve-url-loader": "^2.3.0"
+    "resolve-url-loader": "^2.3.0",
+    "shortid": "^2.2.14"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

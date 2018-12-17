@@ -2,22 +2,21 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './Registration.sass';
 import { Form } from '../../components/Form';
-import { ErrorMsg } from '../../components/ErrorMsg';
 import { createUser } from '../../servises/users';
-import { setUser, getErrors } from '../../store';
+import { setUser, setFlashMessages } from '../../store';
 
 export class RegistrationComponent extends React.Component {
   create = (user) => {
     createUser({ email: user.email, password: user.password, password_confirm: user.password_confirm })
       .then((user) => {
         this.props.dispatch(setUser(user));
+        this.props.dispatch(setFlashMessages({
+          type: 'success',
+          text: 'You signed up successfully'
+        }))
         this.props.history.push('/user');
-        this.props.dispatch(getErrors(null));
       })
-      .catch(err => this.props.dispatch(getErrors(err)));
-  }
-  clearErrors = () => {
-    this.props.dispatch(getErrors(null));
+      .catch(err => console.log(err));
   }
   render() {
     return (
@@ -29,7 +28,6 @@ export class RegistrationComponent extends React.Component {
               excluded={['firstName', 'lastName', 'description']}
               onSubmit={this.create}
               buttonName="signUp"
-              clearErrors={this.clearErrors}
             />
             <span className="warn">By clicking “Sign Up”, you agree to our
               <a href="#">terms of service</a> and <a href="#">privacy statement</a>.
@@ -44,6 +42,8 @@ export class RegistrationComponent extends React.Component {
 
 const mapStoreToProps = state => ({
   user: state.user,
-  errors: state.errors
+  errors: state.errors,
+  setFlashMessages: setFlashMessages,
 });
 export const Registration = withRouter(connect(mapStoreToProps)(RegistrationComponent));
+
