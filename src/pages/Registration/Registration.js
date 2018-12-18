@@ -16,13 +16,17 @@ export class RegistrationComponent extends React.Component {
         }))
         this.props.history.push('/user');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.props.dispatch(setFlashMessages({
+          isSuccess: false,
+          text: err.text
+        }))
+      });
   }
   render() {
     return (
       <section className="registration">
         <div className="container">
-          {/* {this.props.errors && <ErrorMsg errorMsg={this.props.errors} />} */}
           <div className="registration_wrap">
             <Form
               excluded={['firstName', 'lastName', 'description']}
