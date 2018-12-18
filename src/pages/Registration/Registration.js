@@ -42,7 +42,6 @@ export class RegistrationComponent extends React.Component {
 
 const mapStoreToProps = state => ({
   user: state.user,
-  errors: state.errors,
   setFlashMessages: setFlashMessages,
 });
 export const Registration = withRouter(connect(mapStoreToProps)(RegistrationComponent));

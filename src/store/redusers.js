@@ -1,5 +1,6 @@
-import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS, ADD_FLASH_MESSAGES } from './actions';
-import shortid from 'shortid'
+import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS, ADD_FLASH_MESSAGES, DELETE_FLASH_MESSAGES } from './actions';
+import shortid from 'shortid';
+import findIndex from 'lodash';
 
 
 export const user = (state = null, { type, data }) => {
@@ -17,20 +18,30 @@ export const user = (state = null, { type, data }) => {
   return state;
 };
 
-export const flashMessages = (state = [], {type, message}) => {
+export const flashMessages = (state = [], { type, message, id }) => {
   switch (type) {
     case ADD_FLASH_MESSAGES:
-    {
-      return [
-        ...state,
-        {
-          id: shortid.generate(),
-          isSuccess: message.isSuccess,
-          text: message.text
+      {
+        return [
+          ...state,
+          {
+            id: shortid.generate(),
+            isSuccess: message.isSuccess,
+            text: message.text
+          }
+        ]
+      }
+    case DELETE_FLASH_MESSAGES:
+      {
+        const index = _.findIndex(state, { id: id });
+        if (index >= 0) {
+          return [
+            ...state.slice(0, index),
+            ...state.slice(index + 1)
+          ]
         }
-      ]
-    }
-
+        return state;
+      }
   }
   return state;
 }
