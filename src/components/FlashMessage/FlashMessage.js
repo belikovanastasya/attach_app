@@ -20,7 +20,7 @@ export class FlashMessage extends React.Component {
         return (
             <div className={isSuccess ? 'flashmessage success-mesage' : 'flashmessage error-message'}>
                <span>{text}</span>
-               <button className="close-btn" onClick={this.onClick} autoHideFlashMessages = {this.autoHideFlashMessages()}><FontAwesomeIcon icon="times" /></button>
+               <button className="close-btn" onClick={this.onClick} autohideflashmessages = {this.autoHideFlashMessages()}><FontAwesomeIcon icon="times" /></button>
             </div>
         )
     }
