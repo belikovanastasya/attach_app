@@ -1,7 +1,16 @@
+@import '../../sass/_variables.sass'
+@import '../../sass/_mixins.sass'
+
 .messages-list__box
     width: 100%
+    max-width: 400px
+    margin: 0 auto
     display: flex
     flex-direction: column
     justify-content: center
     align-items: flex-start
-    padding: 20px 0
+    position: absolute
+    top: 90px
+    left: calc(50% - 200px)
+    +rmin(1200)
+        top: 150px

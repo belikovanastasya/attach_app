@@ -1,9 +1,8 @@
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../servises';
-import { ErrorMsg } from '../../components/ErrorMsg';
 import './authrization.sass';
-import { setUser, getErrors } from '../../store';
+import { setUser, setFlashMessages } from '../../store';
 
 export class AuthorizationComponent extends React.Component {
   constructor(props) {
@@ -25,18 +24,19 @@ export class AuthorizationComponent extends React.Component {
     login({ email, password })
       .then((res) => {
         this.props.dispatch(setUser(res.user));
-        this.props.dispatch(getErrors(null));
+        this.props.dispatch(setFlashMessages({
+          isSuccess: true,
+          text: 'You signed in successfully'
+        }))
         this.setState({ redirectToReferrer: true });
       })
-      .catch(err => this.props.dispatch(getErrors(err)));
+      .catch(err => {
+        this.props.dispatch(setFlashMessages({
+          isSuccess: false,
+          text: err.text
+        }))
+      });
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.errors) {
-  //     this.setState({
-  //       errors: nextProps.errors
-  //     });
-  //   }
-  // }
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
@@ -47,7 +47,6 @@ export class AuthorizationComponent extends React.Component {
     return (
       <section className="registration">
         <div className="container">
-        {this.props.errors && <ErrorMsg errorMsg={this.props.errors} />}
           <div className="registration_wrap">
             <form
               onSubmit={this.onSabmit}
@@ -62,7 +61,7 @@ export class AuthorizationComponent extends React.Component {
                     className={this.props.errors ? 'invalid' : ''}
                   />
                 </div>
-                {/* {errors && <span className="error-text">{errors.email}</span>} */}
+                {errors && <span className="error-text">{errors.email}</span>}
                 <div className="pass">
                   <input
                     type="password"
@@ -72,7 +71,7 @@ export class AuthorizationComponent extends React.Component {
                     className={this.props.errors ? 'invalid' : ''}
                   />
                 </div>
-                {/* {errors && <span className="error-text">{errors.password}</span>} */}
+                {errors && <span className="error-text">{errors.password}</span>}
                 <a href="#" className="forgotPass-link">Forgot your password?</a>
                 <button className="btn signUpBtn">
                   <span>Log In</span>
