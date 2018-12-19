@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import { Main } from './Main';
 import { User } from './User';
@@ -14,9 +14,10 @@ export class Pages extends Component {
     return (
       <Switch>
         <PrivateRoute login={this.props.login} path="/user" component={User} />,
-        <Route path="/login" render={({ location }) => <Authorization location={location}onLogin={this.props.setLoginState} />} />,
-        <Route path="/registration" render={() => <Registration onLogin={this.setLoginState} />} />,
         <Route path="/" exact component={Main} key="home" />,
+    {!this.props.login ? <Route path="/login" render={({ location }) => <Authorization location={location}onLogin={this.props.login} />} /> :
+        <Redirect  to={{  pathname: '/' }}/>},
+        <Route path="/registration" render={() => <Registration onLogin={this.setLoginState} />} />,
         <Route path="/about" component={About} key="about" />,
         <Route path="/project" component={Project} key="project" />,
         <Route path="/newses" component={News} key="news" />,
