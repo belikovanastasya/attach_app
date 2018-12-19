@@ -23,6 +23,8 @@ export class AuthorizationComponent extends React.Component {
     const { email, password } = this.state;
     login({ email, password })
       .then((res) => {
+        const token = res.token;
+        localStorage.setItem('jwtToken', token);
         this.props.dispatch(setUser(res.user));
         this.props.dispatch(setFlashMessages({
           isSuccess: true,

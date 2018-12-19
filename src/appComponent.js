@@ -6,6 +6,7 @@ import { Pages } from './pages/Pajes';
 import { FlashMessagesList } from './components/FlashMessagesList';
 import { checkUser } from './servises';
 import { setUser } from './store';
+import { setAuthToken } from './servises/setAuthToken';
 import './appComponent.sass';
 
 export class AppComponent extends Component {
@@ -13,7 +14,8 @@ export class AppComponent extends Component {
     this.props.dispatch(setUser(user));
   }
   componentDidMount() {
-    checkUser()
+    const token = setAuthToken.getToken();
+    checkUser(token)
       .then(res => this.props.dispatch(setUser(res.user)))
       .catch(err => console.log('Can\'t login', err));
   }

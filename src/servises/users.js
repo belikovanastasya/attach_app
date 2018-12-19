@@ -1,7 +1,6 @@
 import { rest } from './rest';
 
-
-export const checkUser = () => rest.get('api/users/checkuser');
+export const checkUser = (data = {}) => rest.post('api/users/checkuser', data);
 export const login = (data = {}) => rest.post(
   'api/users/login',
   data
