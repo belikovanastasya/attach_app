@@ -11,14 +11,12 @@ export const langsList = [
 ];
 
 export const footerNavList = [
-  { link: 'about', text: 'Hey, attach' },
-  { link: 'project', text: 'Projects' },
-  { link: 'news', text: 'News' },
-  { link: 'contact', text: 'Contact Us' },
+  { link: 'Projects', text: 'Hey, attach' },
+  { link: 'Designers', text: 'Projects' },
 ];
 
 export const socialList = [
-  { lang: 'en', className: 'active' },
-  { lang: 'uk', className: '' },
-  { lang: 'ru', className: '' },
+  { social: 'insta', link: 'https://www.instagram.com/', icon: 'fainstagram' },
+  { social: 'fb', link: 'https://www.facebook.com/', icon: 'fafacebook' },
+
 ];
