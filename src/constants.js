@@ -9,3 +9,14 @@ export const langsList = [
   { lang: 'uk', className: '' },
   { lang: 'ru', className: '' },
 ];
+
+export const footerNavList = [
+  { link: 'Projects', text: 'Hey, attach' },
+  { link: 'Designers', text: 'Projects' },
+];
+
+export const socialListArr = [
+  { social: 'insta', link: 'https://www.instagram.com/', icon: 'insta' },
+  { social: 'fb', link: 'https://www.facebook.com/', icon: 'facebook' },
+
+];
