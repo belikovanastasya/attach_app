@@ -3,7 +3,7 @@ import { navList } from "../../constants";
 
 export const FooterNav = props => {
  return (
-    <ul className="menu_nav">
+    <ul className="footer-nav-menu">
       {navList.map((nav, index) => (
         <li key={index} onClick={props.updateData}>
           <NavLink to={`/${nav.link}`} activeClassName="active">

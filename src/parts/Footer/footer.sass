@@ -1,0 +1,58 @@
+@import '../../sass/_variables.sass'
+@import '../../sass/_mixins.sass'
+
+footer
+    width: 100%
+    padding: 50px 0 20px 0
+    .footer-wrap
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 1fr 80px
+        grid-row-gap: 25px
+        +rmin(768)
+            grid-template-columns: 1fr 1fr 1fr 1fr
+        .footer-bot
+            height: 50px
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            grid-column: 1 / 3
+            +rmin(768)
+                grid-column: 1 / 5
+        .footer-col
+            &.col-1
+                +r(767)
+                    display: flex
+                    flex-direction: column
+                    justify-content: center
+                    align-items: flex-start
+                    img
+                        width: 90px
+            p
+                text-transform: uppercase
+                font-weight: bold
+                margin-bottom: 20px
+            .footer-nav-menu
+                li
+                    margin-bottom: 10px
+                    position: relative
+                    &:after
+                        @include pseudo
+                        width: 5px
+                        height: 5px
+                        background: #000
+                        border-radius: 100%
+                        top: 5px
+                        left: -10px
+                        opacity: 0
+                        transform: translateX(-5px)
+                        transition: all 0.5s ease
+                    &:hover
+                        &:after
+                            opacity: 1
+                            transform: translateX(0)
+
+
+
+

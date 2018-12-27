@@ -16,7 +16,7 @@ export const footerNavList = [
 ];
 
 export const socialListArr = [
-  { social: 'insta', link: 'https://www.instagram.com/', icon: 'instagram' },
+  { social: 'insta', link: 'https://www.instagram.com/', icon: 'insta' },
   { social: 'fb', link: 'https://www.facebook.com/', icon: 'facebook' },
 
 ];
