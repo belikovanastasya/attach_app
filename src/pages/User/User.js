@@ -26,6 +26,5 @@ export class  UserComponent extends React.Component {
 
 const mapStoreToProps = state => ({
   user: state.user,
-  // setFlashMessages: setFlashMessages,
 });
 export const User = withRouter(connect(mapStoreToProps)(UserComponent));

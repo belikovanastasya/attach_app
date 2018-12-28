@@ -9,8 +9,13 @@
     align-items: center
 .user-profile-form
     width: 100%
-    display: grid
-    grid-template-columns: 1fr
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: flex-start
+    flex-wrap: wrap
+    +rmin(768)
+        justify-content: space-between
     .user-profile_img
         width: 100%
         display: flex
@@ -19,6 +24,8 @@
         align-items: center
         +r(767)
             order: -1
+        +rmin(768)
+            width: 50%
         .img-holder
             width: 200px
             height: 200px
@@ -31,3 +38,6 @@
         grid-row-gap: 20px
         grid-column-gap: 10px
         padding: 20px 0
+        width: 100%
+        +rmin(768)
+            width: 50%
