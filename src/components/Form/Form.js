@@ -9,7 +9,7 @@ export class Form extends Component {
       { id: 'lastName', label: 'Last name', reg: /^[^ ]{3,20}$/ },
       { id: 'password', label: 'Password', reg: /^[^ ]{6,20}$/, secure: true },
       { id: 'password_confirm', label: 'Repeat password', reg: /^[^ ]{6,20}$/, secure: true },
-      { id: 'description', label: 'About me', reg: /^[^ ]{3,20}$/, secure: true }
+      { id: 'description', label: 'About me', reg: /^[^ ]{3,20}$/, secure: false }
     ];
   }
 
@@ -18,7 +18,8 @@ export class Form extends Component {
 
     this.fields = Form.fields;
     this.state = {
-      error: ''
+      error: '',
+      checked: false
     };
     this.fields.forEach(field => (this.state[field.id] = { value: '' }));
   }
@@ -26,6 +27,7 @@ export class Form extends Component {
     this.fields = this.getActualFields();
   }
   static getDerivedStateFromProps(nextProps) {
+    console.log('dddd')
     if (!nextProps.data) {
       return null;
     }
@@ -88,13 +90,24 @@ export class Form extends Component {
     }
     render() {
       const { state, fields } = this;
-      const { excluded, disabled, buttonName } = this.props;
+      const { excluded, disabled, buttonName, checkbox } = this.props;
       const buttons = { signUp: { name: 'sing Up', value: 'Sing Up' }, save: { name: 'Save', value: 'Save' } };
       return (
         <form
           className="form"
           onSubmit={this.save}
         >
+        {checkbox && <div className="checkbox-field">
+          <div className="checkbox-holder">
+          <input
+            name='checked'
+            type='checkbox'
+            checked={state.checked}
+            onChange={this.setValue}
+          />
+          </div>
+          <span>I am a desinger</span>
+          </div>}
           <div className="registration-template none-aithorize-template active">{fields
             .filter(({ id }) => !excluded.includes(id))
             .map(({ label, secure, id }, index) => {
@@ -129,10 +142,11 @@ export class Form extends Component {
 }
 
 Form.defaultProps = {
-  excluded: [],
-  disabled: [],
-  skipped: [],
+  excluded: [],  //excluded fields from array
+  disabled: [],  //disables fields
+  skipped: [],   //fields without validation
   buttonName: 'Save',
+  checkbox: false,
   clearErrors: _ => _,
   onSubmit: _ => _
 };

@@ -1,36 +1,29 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Checkbox } from '../../components/Checkbox'
+import { Form } from '../Form';
 import './userprofile.sass';
 
 
 export class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  saveChanges = (user) => {
+    console.log(user)
+  }
   render() {
+    const {user} = this.props;
     return (
-      <form className="user-profile-form">
+        <React.Fragment>
         <div className="user-profile__main">
-        <div><Checkbox /> <span>I am a desinger</span></div><button className="edit-btn"><FontAwesomeIcon icon="edit" /></button>
-          <input disabled type="text" name="email" value={this.props.email}/>
-          <button className="edit-btn"><FontAwesomeIcon icon="times" /></button>
-          <input
-            disabled
-            type="text"
-            name="firstname"
-            placeholder="First Name"
-          />
-          <button className="edit-btn"><FontAwesomeIcon icon="edit" /></button>
-          <input
-            disabled
-            type="text"
-            name="secondname"
-            placeholder="Second Name"
-          />
-          <button className="edit-btn"><FontAwesomeIcon icon="edit" /></button>
-          <textarea placeholder="About me" />
-          <button className="edit-btn"><FontAwesomeIcon icon="edit" /></button>
+        <Form
+              excluded={['password', 'password_confirm']}
+              onSubmit={this.saveChanges}
+              buttonName="save"
+              checkbox={true}
+              data={user}
+            />
         </div>
-        <div className="user-profile_img"><div className="img-holder"><img src={this.props.photo} /></div><input type="file"/></div>
-        <div className="btn_holder"><button className="btn">Save</button></div>
-      </form>
+        {/* <div className="user-profile_img"><div className="img-holder"><img src={this.props.photo} /></div><input type="file"/></div> */}
+        </React.Fragment>
     );
   }
 }

@@ -11,11 +11,7 @@ export class  UserComponent extends React.Component {
       <div className="container">
       <div className="user-profile-wrap">
       <UserProfile
-        email={this.props.user.email}
-        firstname={this.props.user.firstname}
-        secondname={this.props.user.secondname}
-        about={this.props.user.about}
-        photo={this.props.user.photo}
+        user={this.props.user}
       />
       <UserProjectList />
       </div>
