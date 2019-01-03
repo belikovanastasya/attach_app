@@ -9,7 +9,6 @@ export class Form extends Component {
       { id: 'lastName', label: 'Last name', reg: /^[^ ]{3,20}$/ },
       { id: 'password', label: 'Password', reg: /^[^ ]{6,20}$/, secure: true },
       { id: 'password_confirm', label: 'Repeat password', reg: /^[^ ]{6,20}$/, secure: true },
-      { id: 'description', label: 'About me', reg: /^[^ ]{3,20}$/, secure: false }
     ];
   }
 
@@ -27,15 +26,16 @@ export class Form extends Component {
     this.fields = this.getActualFields();
   }
   static getDerivedStateFromProps(nextProps) {
-    console.log('dddd')
     if (!nextProps.data) {
       return null;
     }
+    console.log(nextProps.data)
     const state = {};
     Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
     return state;
   }
   setValue = ({ target }) => {
+    console.log(target.value)
     this.setState({
       [target.name]: { value: target.value }
     });
@@ -90,14 +90,25 @@ export class Form extends Component {
     }
     render() {
       const { state, fields } = this;
-      const { excluded, disabled, buttonName, checkbox } = this.props;
+      const { excluded, disabled, buttonName, checkbox, desctiption, avatar } = this.props;
       const buttons = { signUp: { name: 'sing Up', value: 'Sing Up' }, save: { name: 'Save', value: 'Save' } };
       return (
         <form
           className="form"
           onSubmit={this.save}
         >
-        {checkbox && <div className="checkbox-field">
+
+          <div className="registration-template none-aithorize-template active">
+          {avatar && <div className="additional-field">
+          <div className="avatar-holder">
+          <input
+            name='avatar'
+            type='file'
+            onChange={this.setValue}
+          />
+          </div>
+          </div>}
+        {checkbox && <div className="additional-field">
           <div className="checkbox-holder">
           <input
             name='checked'
@@ -108,12 +119,12 @@ export class Form extends Component {
           </div>
           <span>I am a desinger</span>
           </div>}
-          <div className="registration-template none-aithorize-template active">{fields
+          {fields
             .filter(({ id }) => !excluded.includes(id))
             .map(({ label, secure, id }, index) => {
               const stateField = state[id];
               return (
-                <div key={label}>
+                <div className="main-field" key={label}>
                   <input
                     type={secure ? 'password' : 'text'}
                     name={id}
@@ -128,14 +139,20 @@ export class Form extends Component {
                 </div>
               );
             })}
+            {desctiption && <textarea
+            name='description'
+            onChange={this.setValue}
+           />}
           </div>
           {state.error && <span className="error-text">{state.error}</span>}
-          <button
-            className="saveBtn btn"
-            type="submit"
-            disabled={this.getDisabledState()}
-          ><span>{buttons[buttonName].name}</span>
-          </button>
+          <div className="btn_holder">
+            <button
+              className="saveBtn btn"
+              type="submit"
+              disabled={this.getDisabledState()}
+            ><span>{buttons[buttonName].name}</span>
+            </button>
+          </div>
         </form>
       );
     }
@@ -147,6 +164,8 @@ Form.defaultProps = {
   skipped: [],   //fields without validation
   buttonName: 'Save',
   checkbox: false,
+  desctiption: false,
+  avatar: false,
   clearErrors: _ => _,
   onSubmit: _ => _
 };
