@@ -32,10 +32,10 @@ export class Form extends Component {
     console.log(nextProps.data)
     const state = {};
     Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
+
     return state;
   }
   setValue = ({ target }) => {
-    console.log(target.value)
     this.setState({
       [target.name]: { value: target.value }
     });
@@ -161,7 +161,7 @@ export class Form extends Component {
 Form.defaultProps = {
   excluded: [],  //excluded fields from array
   disabled: [],  //disables fields
-  skipped: [],   //fields without validation
+  skipped: [],
   buttonName: 'Save',
   checkbox: false,
   desctiption: false,
