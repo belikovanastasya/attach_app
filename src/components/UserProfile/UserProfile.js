@@ -16,7 +16,6 @@ export class UserProfile extends React.Component {
         <div className="user-profile__main">
         <Form
               excluded={['password', 'password_confirm']}
-              disabled={['email']}
               onSubmit={this.saveChanges}
               buttonName="save"
               checkbox={true}

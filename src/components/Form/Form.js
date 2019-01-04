@@ -20,20 +20,11 @@ export class Form extends Component {
       error: '',
       checked: false
     };
-    this.fields.forEach(field => (this.state[field.id] = { value: '' }));
+    !this.props.data ?
+    this.fields.forEach(field => (this.state[field.id] = { value: '' })) : this.fields.forEach(field => (this.state[field.id] = { value: this.props.data[field.id] }))
   }
   componentDidMount() {
     this.fields = this.getActualFields();
-  }
-  static getDerivedStateFromProps(nextProps) {
-    if (!nextProps.data) {
-      return null;
-    }
-    console.log(nextProps.data)
-    const state = {};
-    Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
-
-    return state;
   }
   setValue = ({ target }) => {
     this.setState({
@@ -97,7 +88,6 @@ export class Form extends Component {
           className="form"
           onSubmit={this.save}
         >
-
           <div className="registration-template none-aithorize-template active">
           {avatar && <div className="additional-field">
           <div className="avatar-holder">
