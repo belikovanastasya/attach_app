@@ -40,9 +40,9 @@ export class Form extends Component {
   }
 
   setValue = ({ target }) => {
-
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      [target.name]: { value: target.value }
+      [target.name]: { value }
     });
     this.props.clearErrors();
   };
