@@ -23,21 +23,24 @@ export class Form extends Component {
     super(props);
 
     this.fields = Form.fields;
+    this.otherFields = Object.keys(this.props.otherFields);
     this.state = {
       error: '',
-      checked: false
+      checked: false,
     };
-    !this.props.data
-      ? this.fields.forEach(field => (this.state[field.id] = { value: '' }))
-      : this.fields.forEach(
-          field => (this.state[field.id] = { value: this.props.data[field.id] })
-        );
+    if (!this.props.data) {
+      this.fields.forEach(field => (this.state[field.id] = { value: '' }));
+    } else {
+      this.fields.forEach(field => (this.state[field.id] = { value: this.props.data[field.id] }));
+      this.otherFields.forEach(field => (this.state[field] = { value: this.props.data[field] }));
+    }
   }
   componentDidMount() {
     this.fields = this.getActualFields();
   }
 
   setValue = ({ target }) => {
+
     this.setState({
       [target.name]: { value: target.value }
     });
@@ -81,6 +84,7 @@ export class Form extends Component {
       .filter(field => !this.props.excluded.includes(field.id))
       .filter(field => !this.props.skipped.includes(field.id))
       .forEach(field => (form[field.id] = this.state[field.id].value));
+    this.otherFields.forEach(field => (form[field] = this.state[field].value));
     return form;
   }
   getActualFields() {
@@ -95,9 +99,7 @@ export class Form extends Component {
       excluded,
       disabled,
       buttonName,
-      checkbox,
-      desctiption,
-      avatar
+      otherFields
     } = this.props;
     const buttons = {
       signUp: { name: 'sing Up', value: 'Sing Up' },
@@ -106,14 +108,14 @@ export class Form extends Component {
     return (
       <form className="form" onSubmit={this.save}>
         <div className="registration-template none-aithorize-template active">
-          {avatar && (
+          {otherFields.avatar && (
             <div className="additional-field">
               <div className="avatar-holder">
                 <input name="avatar" type="file" onChange={this.setValue} />
               </div>
             </div>
           )}
-          {checkbox && (
+          {otherFields.checkbox && (
             <div className="additional-field">
               <div className="checkbox-holder">
                 <input
@@ -148,8 +150,8 @@ export class Form extends Component {
                 </div>
               );
             })}
-          {desctiption && (
-            <textarea name="description" onChange={this.setValue} />
+          {otherFields.description && (
+            <textarea name="description" onChange={this.setValue} value={state.description.value} />
           )}
         </div>
         {state.error && <span className="error-text">{state.error}</span>}
@@ -172,9 +174,7 @@ Form.defaultProps = {
   disabled: [],  //disables fields
   skipped: [],
   buttonName: 'Save',
-  checkbox: false,
-  desctiption: false,
-  avatar: false,
+  otherFields: {},
   clearErrors: _ => _,
   onSubmit: _ => _
 };

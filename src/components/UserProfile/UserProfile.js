@@ -1,12 +1,14 @@
-import { React } from 'react';
+import React, { Component } from 'react';
 import { Form } from '../Form';
+import { updateUser } from '../../servises/users';
 import './userprofile.sass';
 
 
-export class UserProfile extends React.Component {
-
-  saveChanges = user => {
-    console.log(user);
+export class UserProfile extends Component {
+  saveUser = (user) => {
+    updateUser(user)
+      .then(() => this.props.dispatch(updateUser(user)))
+      .catch(err => console.log('Can\'t update', err));
   };
   render() {
     const { user } = this.props;
@@ -15,11 +17,11 @@ export class UserProfile extends React.Component {
         <div className="user-profile__main">
           <Form
             excluded={['password', 'password_confirm']}
-            onSubmit={this.saveChanges}
+            skipped={['password', 'repeatPassword']}
+            disabled={'email'}
+            onSubmit={this.saveUser}
             buttonName="save"
-            checkbox
-            desctiption
-            avatar
+            otherFields={{ checkbox: true, description: true, avatar: true }}
             data={user}
           />
         </div>
