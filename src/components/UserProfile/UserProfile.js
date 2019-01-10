@@ -16,12 +16,12 @@ export class UserProfile extends Component {
       <React.Fragment>
         <div className="user-profile__main">
           <Form
+            skipped={['password', 'password_confirm']}
             excluded={['password', 'password_confirm']}
-            skipped={['password', 'repeatPassword']}
-            disabled={'email'}
+            disabled={['email']}
             onSubmit={this.saveUser}
             buttonName="save"
-            otherFields={{ isDesigner: true, description: true}}
+            otherFields={{ isDesigner: true, description: true }}
             data={user}
           />
         </div>

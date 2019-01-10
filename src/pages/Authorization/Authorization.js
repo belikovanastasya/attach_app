@@ -32,11 +32,11 @@ export class AuthorizationComponent extends React.Component {
         }))
         this.setState({ redirectToReferrer: true });
       })
-      .catch(err => {
+      .catch((err) => {
         this.props.dispatch(setFlashMessages({
           isSuccess: false,
           text: err.text
-        }))
+        }));
       });
   }
 

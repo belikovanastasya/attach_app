@@ -21,7 +21,6 @@ export class Form extends Component {
 
   constructor(props) {
     super(props);
-
     this.fields = Form.fields;
     this.otherFields = Object.keys(this.props.otherFields);
     this.state = {
@@ -90,8 +89,7 @@ export class Form extends Component {
   getActualFields() {
     return this.fields
       .filter(field => !this.props.excluded.includes(field.id))
-      .filter(field => !this.props.skipped.includes(field.id))
-      .filter(field => !this.props.disabled.includes(field.id));
+      .filter(field => !this.props.skipped.includes(field.id));
   }
   render() {
     const { state, fields } = this;
@@ -101,6 +99,7 @@ export class Form extends Component {
       buttonName,
       otherFields
     } = this.props;
+
     const buttons = {
       signUp: { name: 'sing Up', value: 'Sing Up' },
       save: { name: 'Save', value: 'Save' }
@@ -108,18 +107,11 @@ export class Form extends Component {
     return (
       <form className="form" onSubmit={this.save}>
         <div className="registration-template none-aithorize-template active">
-          {otherFields.avatar && (
-            <div className="additional-field">
-              <div className="avatar-holder">
-                <input name="avatar" type="file" onChange={this.setValue} />
-              </div>
-            </div>
-          )}
           {otherFields.isDesigner && (
             <div className="additional-field">
               <div
                 className={state.isDesigner.value ? 'checkbox-holder checked' : 'checkbox-holder'}
-                title="heck if you are designer"
+                title="Check if you are designer"
               >
                 <input
                   name="isDesigner"
@@ -154,7 +146,12 @@ export class Form extends Component {
               );
             })}
           {otherFields.description && (
-            <textarea name="description" onChange={this.setValue} value={state.description.value} placeholder="About me" />
+            <textarea
+              name="description"
+              onChange={this.setValue}
+              value={state.description.value}
+              placeholder="About me"
+            />
           )}
         </div>
         {state.error && <span className="error-text">{state.error}</span>}
