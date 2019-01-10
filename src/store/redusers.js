@@ -1,6 +1,6 @@
-import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, GET_ERRORS, ADD_FLASH_MESSAGES, DELETE_FLASH_MESSAGES } from './actions';
 import shortid from 'shortid';
 import findIndex from 'lodash';
+import { SET_USER, UPDATE_USER, REMOVE_USER, CREATE_USER, ADD_FLASH_MESSAGES, DELETE_FLASH_MESSAGES } from './actions';
 
 
 export const user = (state = null, { type, data }) => {
@@ -29,16 +29,16 @@ export const flashMessages = (state = [], { type, message, id }) => {
           isSuccess: message.isSuccess,
           text: message.text
         }
-      ]
+      ];
     }
     case DELETE_FLASH_MESSAGES:
     {
-      const index = _.findIndex(state, { id: id });
+      const index = _.findIndex(state, { id });
       if (index >= 0) {
         return [
           ...state.slice(0, index),
           ...state.slice(index + 1)
-        ]
+        ];
       }
       return state;
     }

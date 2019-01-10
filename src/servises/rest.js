@@ -28,7 +28,7 @@ export const rest = {
       }
     };
     const token = localStorage.getItem('jwtToken');
-    if(token) {
+    if (token) {
       options.headers['Authorization'] = token;
     }
     return request(url, 'POST', body, options);

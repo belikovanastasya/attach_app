@@ -13,6 +13,6 @@ export const removeUser = () => ({ type: REMOVE_USER });
 export const createUser = data => ({ type: CREATE_USER, data });
 
 export const setFlashMessages = message => ({ type: ADD_FLASH_MESSAGES, message });
-export const deleteFlashMessages = id => ({type: DELETE_FLASH_MESSAGES, id });
+export const deleteFlashMessages = id => ({ type: DELETE_FLASH_MESSAGES, id });
 
 export const getErrors = data => ({ type: GET_ERRORS, data });
