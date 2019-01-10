@@ -26,7 +26,6 @@ export class Form extends Component {
     this.otherFields = Object.keys(this.props.otherFields);
     this.state = {
       error: '',
-      checked: false,
     };
     if (!this.props.data) {
       this.fields.forEach(field => (this.state[field.id] = { value: '' }));
@@ -61,12 +60,13 @@ export class Form extends Component {
   };
 
   getDisabledState() {
-    return this.getActualFields().some(({ id }) => {
-      const { value, error } = this.state[id];
-      return !value || error;
-    });
+    if (!this.props.data) {
+      return this.getActualFields().some(({ id }) => {
+        const { value, error } = this.state[id];
+        return !value || error;
+      });
+    }
   }
-
   save = (event) => {
     const { state } = this;
     let error = '';
@@ -115,13 +115,16 @@ export class Form extends Component {
               </div>
             </div>
           )}
-          {otherFields.checkbox && (
+          {otherFields.isDesigner && (
             <div className="additional-field">
-              <div className="checkbox-holder">
+              <div
+                className={state.isDesigner.value ? 'checkbox-holder checked' : 'checkbox-holder'}
+                title="heck if you are designer"
+              >
                 <input
-                  name="checked"
+                  name="isDesigner"
                   type="checkbox"
-                  checked={state.checked}
+                  checked={state.isDesigner.value}
                   onChange={this.setValue}
                 />
               </div>

@@ -21,7 +21,7 @@ export class UserProfile extends Component {
             disabled={'email'}
             onSubmit={this.saveUser}
             buttonName="save"
-            otherFields={{ checkbox: true, description: true, avatar: true }}
+            otherFields={{ isDesigner: true, description: true, avatar: true }}
             data={user}
           />
         </div>
