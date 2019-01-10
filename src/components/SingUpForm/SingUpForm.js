@@ -1,4 +1,5 @@
-import { createUser } from '../../servises'
+import { createUser } from '../../servises';
+
 export class SingUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,8 @@ export class SingUpForm extends React.Component {
     Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
     return state;
   }
-  onChange = (e) =>{
-    this.setState({[e.target.name]: e.target.value})
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
   }
   onSubmit = (e) => {
     e.preventDefault();
@@ -33,8 +34,8 @@ export class SingUpForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-      <div className="registration-template none-aithorize-template active ">
-        <div className="email">
+        <div className="registration-template none-aithorize-template active ">
+          <div className="email">
             <input
               type="text"
               placeholder="E-mail"
@@ -42,8 +43,8 @@ export class SingUpForm extends React.Component {
               value={this.state.email}
               onChange={this.onChange}
             />
-        </div>
-        <div className="pass">
+          </div>
+          <div className="pass">
             <input
               type="password"
               name="password"
@@ -51,8 +52,8 @@ export class SingUpForm extends React.Component {
               value={this.state.password}
               onChange={this.onChange}
             />
-        </div>
-        <div className="pass-rp">
+          </div>
+          <div className="pass-rp">
             <input
               type="password"
               name="password_confirm"
@@ -60,13 +61,13 @@ export class SingUpForm extends React.Component {
               value={this.state.repeatPassword}
               onChange={this.onChange}
             />
+          </div>
+          <button className="btn signUpBtn">
+            <span>Sign Up</span>
+          </button>
+          <span className="warn">By clicking “Sign Up”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy statement</a>. We’ll occasionally send you account related emails.</span>
         </div>
-        <button className="btn signUpBtn">
-          <span>Sign Up</span>
-        </button>
-        <span className="warn">By clicking “Sign Up”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy statement</a>. We’ll occasionally send you account related emails.</span>
-      </div>
-    </form>
+      </form>
     )
   }
 }

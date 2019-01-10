@@ -154,7 +154,7 @@ export class Form extends Component {
               );
             })}
           {otherFields.description && (
-            <textarea name="description" onChange={this.setValue} value={state.description.value} />
+            <textarea name="description" onChange={this.setValue} value={state.description.value} placeholder="About me" />
           )}
         </div>
         {state.error && <span className="error-text">{state.error}</span>}
