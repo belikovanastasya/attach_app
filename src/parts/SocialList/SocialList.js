@@ -1,6 +1,5 @@
 import './socialList.sass';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { socialListArr } from "../../constants";
+import { socialListArr } from '../../constants';
 
 export const SocialList = () => {
   const socialListItems = socialListArr.map((item, index) => <li key={index}><a href={item.link}><img src={`images/${item.icon}.png`} width='30px' height='30px' /></a></li>)
@@ -12,4 +11,4 @@ export const SocialList = () => {
       </ul>
     </React.Fragment>
   );
-}
+};

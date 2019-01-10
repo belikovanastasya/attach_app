@@ -7,29 +7,19 @@ export class SingUpForm extends React.Component {
       email: '',
       password: '',
       password_confirm: '',
-      error: ''
-    }
-  }
-  static getDerivedStateFromProps(nextProps) {
-    if (!nextProps.data) {
-      return null;
-    }
-    const state = {};
-    Form.fields.forEach(({ id }) => (state[id] = { value: nextProps.data[id] }));
-    return state;
+    };
   }
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
   onSubmit = (e) => {
     e.preventDefault();
-    const { email, password, password_confirm } = this.state
-    createUser({ email: email, password: password, password_confirm: password_confirm })
-      .then(user => {
-        this.props.dispatch(setUser(user));
-        // this.setState({ redirectToReferrer: true });
+    const { email, password, password_confirm } = this.state;
+    createUser({ email, password, password_confirm })
+      .then((user) => {
+        this.props.dispatch(createUser(user));
       })
-      .catch((err) => console.log('Can\'t login', err))
+      .catch(err => console.log('Can\'t login', err))
   }
   render() {
     return (
@@ -65,9 +55,14 @@ export class SingUpForm extends React.Component {
           <button className="btn signUpBtn">
             <span>Sign Up</span>
           </button>
-          <span className="warn">By clicking “Sign Up”, you agree to our <a href="#">terms of service</a> and <a href="#">privacy statement</a>. We’ll occasionally send you account related emails.</span>
+          <span className="warn">By clicking “Sign Up”, you agree to our
+          <a href="#">terms of service</a>
+            and
+           <a href="#">privacy statement</a>.
+             We’ll occasionally send you account related emails.
+          </span>
         </div>
       </form>
-    )
+    );
   }
 }

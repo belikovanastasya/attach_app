@@ -2,5 +2,5 @@ import './contacts.sass';
 
 
 export const Contacts = () => {
-  return (<div></div>)
+  return (<div />)
 }

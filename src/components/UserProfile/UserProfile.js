@@ -25,7 +25,6 @@ export class UserProfile extends Component {
             data={user}
           />
         </div>
-        {/* <div className="user-profile_img"><div className="img-holder"><img src={this.props.photo} /></div><input type="file"/></div> */}
       </React.Fragment>
     );
   }

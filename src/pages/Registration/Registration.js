@@ -4,6 +4,7 @@ import './Registration.sass';
 import { Form } from '../../components/Form';
 import { createUser } from '../../servises/users';
 import { setUser, setFlashMessages } from '../../store';
+
 export class RegistrationComponent extends React.Component {
   create = (user) => {
     createUser({ email: user.email, password: user.password, password_confirm: user.password_confirm })
@@ -15,11 +16,11 @@ export class RegistrationComponent extends React.Component {
         }))
         this.props.history.push('/user');
       })
-      .catch(err => {
+      .catch((err) => {
         this.props.dispatch(setFlashMessages({
           isSuccess: false,
           text: err.text
-        }))
+        }));
       });
   }
   render() {
@@ -45,7 +46,7 @@ export class RegistrationComponent extends React.Component {
 
 const mapStoreToProps = state => ({
   user: state.user,
-  setFlashMessages: setFlashMessages,
+  setFlashMessages,
 });
 export const Registration = withRouter(connect(mapStoreToProps)(RegistrationComponent));
 

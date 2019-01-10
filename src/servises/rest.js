@@ -27,7 +27,7 @@ export const rest = {
         'Content-type': 'application/json; charset=utf-8'
       }
     };
-    const token = localStorage.getItem("jwtToken");
+    const token = localStorage.getItem('jwtToken');
     if(token) {
       options.headers['Authorization'] = token;
     }

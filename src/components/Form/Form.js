@@ -170,8 +170,8 @@ export class Form extends Component {
 }
 
 Form.defaultProps = {
-  excluded: [],  //excluded fields from array
-  disabled: [],  //disables fields
+  excluded: [],
+  disabled: [],
   skipped: [],
   buttonName: 'Save',
   otherFields: {},
