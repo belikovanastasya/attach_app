@@ -1,14 +1,29 @@
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Form } from '../Form';
 import { updateUser } from '../../servises/users';
 import './userprofile.sass';
+import { updateCurrentUser, setFlashMessages } from '../../store';
 
 
-export class UserProfile extends Component {
-  saveUser = (user) => {
+export class UserProfileComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
+  saveUser = ({ user }) => {
     updateUser(user)
-      .then(() => this.props.dispatch(updateUser(user)))
-      .catch(err => console.log('Can\'t update', err));
+      .then((user) => {
+        this.props.dispatch(updateCurrentUser(user));
+        this.props.dispatch(setFlashMessages({
+          isSuccess: true,
+          text: 'Your changes saved successfully'
+        }));
+      })
+      .catch(err => this.props.dispatch(setFlashMessages({
+        isSuccess: false,
+        text: `Can't update ${err}`
+      })));
   };
   render() {
     const { user } = this.props;
@@ -29,3 +44,8 @@ export class UserProfile extends Component {
     );
   }
 }
+
+const mapStoreToProps = state => ({
+  setFlashMessages
+});
+export const UserProfile = withRouter(connect(mapStoreToProps)(UserProfileComponent));

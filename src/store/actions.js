@@ -8,7 +8,7 @@ export const DELETE_FLASH_MESSAGES = 'delete flashmessages with info';
 
 
 export const setUser = data => ({ type: SET_USER, data });
-export const updateUser = data => ({ type: UPDATE_USER, data });
+export const updateCurrentUser = data => ({ type: UPDATE_USER, data });
 export const removeUser = () => ({ type: REMOVE_USER });
 export const createUser = data => ({ type: CREATE_USER, data });
 

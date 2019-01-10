@@ -93,7 +93,6 @@ export class AuthorizationComponent extends React.Component {
 
 const mapStoreToProps = state => ({
   user: state.user,
-  errors: state.errors
 });
 
 export const Authorization = connect(mapStoreToProps)(AuthorizationComponent);

@@ -23,7 +23,7 @@ export class AppComponent extends Component {
     return (
       <div className="wrapper">
         <Header />
-        <section className='inner-section'>
+        <section className="inner-section">
           <FlashMessagesList />
           <Pages login={this.props.user} />
         </section>
