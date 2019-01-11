@@ -35,7 +35,7 @@ export class AuthorizationComponent extends React.Component {
       .catch((err) => {
         this.props.dispatch(setFlashMessages({
           isSuccess: false,
-          text: err.text
+          text: err.text || 'Something goes wrong with server'
         }));
       });
   }

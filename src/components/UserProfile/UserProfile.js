@@ -8,10 +8,7 @@ import { updateCurrentUser, setFlashMessages } from '../../store';
 
 
 export class UserProfileComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-  saveUser = ({ user }) => {
+  saveUser = (user) => {
     updateUser(user)
       .then((user) => {
         this.props.dispatch(updateCurrentUser(user));

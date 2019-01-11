@@ -89,7 +89,7 @@ export class Form extends Component {
   getActualFields() {
     return this.fields
       .filter(field => !this.props.excluded.includes(field.id))
-      .filter(field => !this.props.skipped.includes(field.id));
+      .filter(field => !this.props.skipped.includes(field.id))
   }
   render() {
     const { state, fields } = this;
