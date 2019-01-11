@@ -30,8 +30,6 @@ export class AuthorizationComponent extends React.Component {
           isSuccess: true,
           text: 'You signed in successfully'
         }));
-        //this.setState({ redirectToReferrer: true });
-        this.props.history.push("/user");
       })
       .catch((err) => {
         this.props.dispatch(setFlashMessages({
@@ -42,11 +40,7 @@ export class AuthorizationComponent extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { redirectToReferrer, errors } = this.state;
-    if (redirectToReferrer) {
-      return <Redirect to={from.pathname} />;
-    }
+    const { errors } = this.state;
     return (
       <section className="registration">
         <div className="container">
