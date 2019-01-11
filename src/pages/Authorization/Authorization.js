@@ -29,8 +29,9 @@ export class AuthorizationComponent extends React.Component {
         this.props.dispatch(setFlashMessages({
           isSuccess: true,
           text: 'You signed in successfully'
-        }))
-        this.setState({ redirectToReferrer: true });
+        }));
+        //this.setState({ redirectToReferrer: true });
+        this.props.history.push("/user");
       })
       .catch((err) => {
         this.props.dispatch(setFlashMessages({

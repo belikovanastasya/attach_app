@@ -13,7 +13,7 @@ export class RegistrationComponent extends React.Component {
         this.props.dispatch(setFlashMessages({
           isSuccess: true,
           text: 'You signed up successfully'
-        }))
+        }));
         this.props.history.push('/user');
       })
       .catch((err) => {

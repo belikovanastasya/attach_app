@@ -17,7 +17,7 @@ export class Pages extends Component {
         <Route path="/" exact component={Main} key="home" />,
         {!this.props.login ? <Route path="/login" render={({ location }) => <Authorization location={location} onLogin={this.props.login} />} /> :
         <Redirect to={{ pathname: '/' }} />},
-        <Route path="/registration" render={() => <Registration onLogin={this.setLoginState} />} />,
+        <Route path="/registration" render={() => <Registration />} />,
         <Route path="/about" component={About} key="about" />,
         <Route path="/project" component={Project} key="project" />,
         <Route path="/newses" component={News} key="news" />,
