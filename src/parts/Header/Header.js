@@ -4,14 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { Langs } from '../Langs';
 import { Login } from '../Login';
 import { Burger } from '../../components/Burger';
-import { logout } from '../../servises';
 import './header.sass';
 import { removeUser } from '../../store';
+import { setAuthToken } from '../../servises/setAuthToken';
 
 export class HeaderComponent extends React.Component {
   logout = (user) => {
     this.props.dispatch(removeUser(user));
-    logout();
+    setAuthToken.removeToken();
   }
   render() {
     const isLogin = this.props.user;
