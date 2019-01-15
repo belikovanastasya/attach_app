@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './user.sass';
 import { UserProfile } from '../../components/UserProfile/';
-import { UserProjectList } from '../../components/UserProjectList';
+import { UserWorksList } from '../../components/UserWorkstList/';
 
 export class UserComponent extends React.Component {
   render() {
@@ -13,11 +13,11 @@ export class UserComponent extends React.Component {
           <UserProfile
             user={this.props.user}
           />
-          <UserProjectList />
+          <UserWorksList user={this.props.user} />
         </div>
       </div>
     );
-  };
+  }
 }
 
 const mapStoreToProps = state => ({

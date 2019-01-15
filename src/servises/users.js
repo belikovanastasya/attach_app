@@ -7,3 +7,4 @@ export const login = (data = {}) => rest.post(
 );
 export const createUser = data => rest.post('api/users/register', data);
 export const updateUser = data => rest.put('api/users/update', data);
+export const getUserWorks = data => rest.post('api/users/userworks', data);
