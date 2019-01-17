@@ -96,10 +96,21 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
+              limit: 8192,
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|ico)(\?\S*)?$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: './src/images',
+            publicPath: './src/images',
+            name: '[name].[ext]'
+          }
+        },
       },
       {
         enforce: 'pre',
@@ -109,7 +120,7 @@ module.exports = {
         options: {
           emitWarning: true
         }
-      }       
+      }
 
     ]
   },

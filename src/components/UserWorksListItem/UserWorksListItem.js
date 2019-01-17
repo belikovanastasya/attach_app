@@ -1,14 +1,14 @@
 import './userWorksListItem.sass';
 
-export const UserWorkListItem = (props) => {
-  const { work } = props;
+export const UserWorksListItem = (props) => {
+  const { works } = props;
   return (
     <div>
-      <img src={work.images.sketch} alt="sketch" />
-      <h2>{work.name}</h2>
+      <img src={works.images.sketch} alt="sketch" />
+      <h2>{works.name}</h2>
       <span>Project</span>
-      <span>{work.project}</span>
-      <span>Votes</span><span>{work.votes}</span>
+      <span>{works.project}</span>
+      <span>Votes</span><span>{works.votes}</span>
     </div>
   );
 };

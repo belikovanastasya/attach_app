@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import './user.sass';
 import { UserProfile } from '../../components/UserProfile/';
-import { UserWorksList } from '../../components/UserWorkstList/';
+import { UserWorksList } from '../../components/UserWorkstList';
 
 export class UserComponent extends React.Component {
   render() {
