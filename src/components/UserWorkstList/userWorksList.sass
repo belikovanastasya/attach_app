@@ -9,7 +9,15 @@
   justify-content: space-between
   align-items: flex-start
   flex-wrap: wrap
+  padding: 20px
+  +rmin(1024)
+    width: calc(100% - 320px)
   &__list
     width: 100%
-  &__item
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    align-items: flex-start
+    &.open
+      width: 50%
 
